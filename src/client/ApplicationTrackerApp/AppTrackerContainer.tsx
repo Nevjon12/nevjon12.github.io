@@ -1,12 +1,12 @@
-import ApplicationContainer from "./ApplicationContainer";
-import InputContainer from "./InputContainer";
-import NavBar from "../components/NavBar";
+import ApplicationContainer from "./containers/ApplicationContainer";
+import InputContainer from "./containers/InputContainer";
+import NavBar from "../NavBar";
 import { useEffect, useState } from "react";
-import Notes from "../components/Notes";
+import Notes from "./components/Notes";
 
 
 
-export default function MainContainer(){
+export default function AppTrackerContainer(){
 
     const [cards, setCards] = useState([]);
     const [currentCard, setCurrentCard] = useState('')
@@ -28,7 +28,6 @@ export default function MainContainer(){
   return(
 
     <>
-      <NavBar></NavBar>
       <div className="main">
         <h1>Application Tracker</h1>
         <>
