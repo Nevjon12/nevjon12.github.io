@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "commonjs",
+  "homepage": "http://nevjon12.github.io/nevjon12.github.io",
   "scripts": {
     "start": "vite",
     "predeploy" : "npm run build",
