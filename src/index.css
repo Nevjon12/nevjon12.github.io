@@ -5,6 +5,13 @@ h1{
   position: relative;
 }
 
+p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
 
 .main{
   display: grid;

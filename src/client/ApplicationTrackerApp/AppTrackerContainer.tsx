@@ -27,9 +27,11 @@ export default function AppTrackerContainer(){
   return(
 
     <>
+      <h1>Application Tracker</h1>
       <div className="main">
-        <h1>Application Tracker</h1>
+        
         <>
+        
         <InputContainer data={cards} setCards={setCards} currentCard={currentCard} />
 
         <ApplicationContainer data={cards} setCards={setCards} setCurrentCard={setCurrentCard} />
