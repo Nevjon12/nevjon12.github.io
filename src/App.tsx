@@ -1,4 +1,7 @@
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
+import AppTrackerContainer from './client/ApplicationTrackerApp/AppTrackerContainer'
+import HomePage from './client/OtherApp/HomePage'
 
 
 function App() {
@@ -6,9 +9,12 @@ function App() {
 
 
   return (
-  <>    
-    <div className='root' />
-  </>
+    <>
+      <Routes>
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/apptracker" element={<AppTrackerContainer/>} />
+      </Routes>
+    </>
   )
 }
 

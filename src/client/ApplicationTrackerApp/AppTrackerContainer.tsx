@@ -1,6 +1,5 @@
 import ApplicationContainer from "./containers/ApplicationContainer";
 import InputContainer from "./containers/InputContainer";
-import NavBar from "../NavBar";
 import { useEffect, useState } from "react";
 import Notes from "./components/Notes";
 

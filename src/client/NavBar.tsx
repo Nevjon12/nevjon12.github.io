@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom"
+
+
 export default function NavBar(){
 
 
@@ -5,10 +8,8 @@ export default function NavBar(){
   return(
 
     <div className="navbar">
-      <a href="/">Home</a>
-      <a href="/apptracker">App Tracker</a>
-      <a href="/about">About the Dev</a>
-
+      <a> <Link to="/">Home </Link></a>
+      <a> <Link to="/apptracker"> App Tracker </Link></a>
     </div>
 
   )
