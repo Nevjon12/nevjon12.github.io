@@ -1,5 +1,5 @@
 import './App.css'
-import MainContainer from './client/containers/MainContainer'
+import MainContainer from './client/ApplicationTrackerApp/containers/MainContainer'
 
 function App() {
 
