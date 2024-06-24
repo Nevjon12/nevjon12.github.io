@@ -25,7 +25,10 @@ export default function ApplicationContainer(props){
               key={index} 
               cards={card} 
               setCurrentCard={props.setCurrentCard} 
-              currentCard={props.currentCard}/>;
+              currentCard={props.currentCard}
+              currentNote={props.currentNote}
+              />;
+              
           })
         }
         </div>

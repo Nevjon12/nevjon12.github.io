@@ -5,34 +5,33 @@ export default function Notes(props){
 
 
 
-  const [noteContent, setNoteContent] = useState()
+  
+  const [noteContent, setNoteContent] = useState("")
+  const updateNote = props.setCurrentNote;
+  let cardNumber = props.current;
+  let currentNote = props.cards?.notes || "No card selected" ;
+  
 
   const onChange = (event)=>{
-    
-    event.target.value = event.target.value;
-    setNoteContent(event.target.value)
-    console.log(noteContent)
+    setNoteContent(event.target.value);
   }
 
     
-  const currentNote = props.current;
- 
 
+ 
 
 
   const saveNote = (event) => {
     event.preventDefault()
 
-  
+
     const formData = JSON.parse(localStorage.getItem('formData'));
-
-    console.log('data', formData[currentNote].notes);
-    console.log('index to update',currentNote);
-
-    formData[currentNote].notes = 'someInfo';
-
+    
+    formData[cardNumber].notes = noteContent;
+    updateNote(noteContent)
+    console.log("updated Note Value in Notes", noteContent);
     localStorage.setItem('formData', JSON.stringify(formData));
-    // currentNote = formData[currentNote].notes
+
 
   }
 
@@ -41,7 +40,7 @@ export default function Notes(props){
 return (
   <form className="notes">
 
-  <textarea name='notetext' style={{width:'100%', boxSizing:'border-box', height:'90%'}} value={`${currentNote}` || 'Nothing selected yet'} onChange={onChange}  /> 
+  <textarea  name='notetext' style={{width:'100%', boxSizing:'border-box', height:'90%'}} value={currentNote} onChange={onChange}  /> 
   <button type='submit' onClick={saveNote}>Save Note</button>
   </form>
 

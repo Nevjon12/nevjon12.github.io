@@ -8,8 +8,10 @@ export default function AppCard(props){
     props.setState(formData)
   };
 
-  const handleClick = ()=>{
+  console.log('Note passed down to card', props.currentNote)
 
+  const handleClick = ()=>{
+    
     props.setCurrentCard(props.id)
 
   }

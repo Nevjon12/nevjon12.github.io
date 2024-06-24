@@ -8,7 +8,8 @@ import Notes from "./components/Notes";
 export default function AppTrackerContainer(){
 
     const [cards, setCards] = useState([]);
-    const [currentCard, setCurrentCard] = useState('')
+    const [currentCard, setCurrentCard] = useState('');
+    const [currentNote, setCurrentNote] = useState ('');
 
 
   
@@ -34,9 +35,9 @@ export default function AppTrackerContainer(){
         
         <InputContainer data={cards} setCards={setCards} currentCard={currentCard} />
 
-        <ApplicationContainer data={cards} setCards={setCards} setCurrentCard={setCurrentCard} />
+        <ApplicationContainer data={cards} setCards={setCards} setCurrentCard={setCurrentCard} currentNote={currentNote} />
         </>
-        <Notes data={cards} current={currentCard} />
+        <Notes data={cards} current={currentCard} setCurrentNote={setCurrentNote} cards={cards[currentCard]}/>
       </div>
     </>
   )
