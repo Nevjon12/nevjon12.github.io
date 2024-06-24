@@ -8,7 +8,7 @@ import Notes from "./components/Notes";
 export default function AppTrackerContainer(){
 
     const [cards, setCards] = useState([]);
-    const [currentCard, setCurrentCard] = useState('');
+    const [currentCard, setCurrentCard] = useState();
     const [currentNote, setCurrentNote] = useState ('');
 
 
@@ -16,7 +16,7 @@ export default function AppTrackerContainer(){
 
     useEffect(()=>{
 
-      const cardsInLocalStorageString = localStorage.getItem('formData');
+      const cardsInLocalStorageString = localStorage.getItem('cardData');
       const cardsInLocalStorage = cardsInLocalStorageString ? JSON.parse(cardsInLocalStorageString) : [];
 
       setCards(cardsInLocalStorage);
@@ -33,11 +33,11 @@ export default function AppTrackerContainer(){
         
         <>
         
-        <InputContainer data={cards} setCards={setCards} currentCard={currentCard} />
+        <InputContainer setCards={setCards} />
 
-        <ApplicationContainer data={cards} setCards={setCards} setCurrentCard={setCurrentCard} currentNote={currentNote} />
+        <ApplicationContainer cards={cards} setCards={setCards} setCurrentCard={setCurrentCard} setCurrentNote={setCurrentNote} />
         </>
-        <Notes data={cards} current={currentCard} setCurrentNote={setCurrentNote} cards={cards[currentCard]}/>
+        <Notes currentCard={currentCard} currentNote={currentNote} setCurrentNote={setCurrentNote}/>
       </div>
     </>
   )

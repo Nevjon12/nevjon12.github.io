@@ -10,7 +10,7 @@ export default function InputForm(props){
   const [formValues, setFormValues] = useState({
     position: '',
     companyName: '',
-    notes: '',
+    notes: 'Add some Notes!',
     date: new Date().toLocaleDateString(),
   });
 
@@ -27,12 +27,12 @@ export default function InputForm(props){
 
 const handleSubmit = () => {
   
-  const existingSubmissionsString = localStorage.getItem('formData');
+  const existingSubmissionsString = localStorage.getItem('cardData');
   const existingSubmissions = existingSubmissionsString ? JSON.parse(existingSubmissionsString) : [];
 
   const updatedSubmissions = [...existingSubmissions, formValues];
 
-  localStorage.setItem('formData', JSON.stringify(updatedSubmissions));
+  localStorage.setItem('cardData', JSON.stringify(updatedSubmissions));
 
   updateState(updatedSubmissions);
 
@@ -40,7 +40,7 @@ const handleSubmit = () => {
   setFormValues({
     position: '',
     companyName: '',
-    notes: '',
+    notes: 'Add some Notes!',
     date: new Date().toLocaleDateString(),
   });
 

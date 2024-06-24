@@ -1,21 +1,14 @@
-import { useState } from "react"
-
-
 export default function Notes(props){
 
-
-
-  
-  const [noteContent, setNoteContent] = useState("")
-  const updateNote = props.setCurrentNote;
-  let cardNumber = props.current;
-  let currentNote = props.cards?.notes || "No card selected" ;
+  const currentCard = props.currentCard;
+  const currentNote = props.currentNote || "No card selected" ;
+  const setCurrentNote = props.setCurrentNote
   
 
-  const onChange = (event)=>{
-    setNoteContent(`${currentNote}${event.target.value}`);
-    console.log(noteContent)
-  }
+  // const onChange = (event)=>{
+  //   setNoteContent(`${currentNote}${event.target.value}`);
+  //   console.log(noteContent)
+  // }
 
     
 
@@ -26,13 +19,12 @@ export default function Notes(props){
     event.preventDefault()
 
 
-    const formData = JSON.parse(localStorage.getItem('formData'));
+    const formData = JSON.parse(localStorage.getItem('cardData'));
     
-    formData[cardNumber].notes = noteContent;
+    formData[currentCard].notes = noteContent;
     updateNote(noteContent)
     console.log("updated Note Value in Notes", noteContent);
-    localStorage.setItem('formData', JSON.stringify(formData));
-
+    localStorage.setItem('cardData', JSON.stringify(formData));
 
   }
 
@@ -41,7 +33,7 @@ export default function Notes(props){
 return (
   <form className="notes">
 
-  <textarea  name='notetext' style={{width:'100%', boxSizing:'border-box', height:'90%'}} value={currentNote} onChange={onChange}  /> 
+  <textarea  name='notetext' style={{width:'100%', boxSizing:'border-box', height:'90%'}} value={currentNote}  /> 
   <button type='submit' onClick={saveNote}>Save Note</button>
   </form>
 

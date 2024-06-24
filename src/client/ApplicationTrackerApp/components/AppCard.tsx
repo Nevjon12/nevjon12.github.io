@@ -2,26 +2,24 @@ export default function AppCard(props){
 
 
   const handleDelete = ()=>{
-    const formData = JSON.parse(localStorage.getItem(`formData`));
+    const formData = JSON.parse(localStorage.getItem(`cardData`));
     formData.splice(props.id,1);
-    localStorage.setItem('formData', JSON.stringify(formData))
-    props.setState(formData)
+    localStorage.setItem('cardData', JSON.stringify(formData))
+    props.setCards(formData)
   };
-
-  console.log('Note passed down to card', props.currentNote)
 
   const handleClick = ()=>{
     
     props.setCurrentCard(props.id)
-
+    props.setCurrentNote(props.card.notes)
   }
 
   return(
 
     <div className="appcard" onClick={handleClick}>
-      Company: {props.cards.companyName}
+      Company: {props.card.companyName}
       <br />
-      Role: {props.cards.position}
+      Role: {props.card.position}
       <br />
       <button onClick={handleDelete}> Delete </button>
       
