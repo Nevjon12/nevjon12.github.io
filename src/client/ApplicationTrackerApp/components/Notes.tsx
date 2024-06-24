@@ -13,7 +13,8 @@ export default function Notes(props){
   
 
   const onChange = (event)=>{
-    setNoteContent(event.target.value);
+    setNoteContent(`${currentNote}${event.target.value}`);
+    console.log(noteContent)
   }
 
     
