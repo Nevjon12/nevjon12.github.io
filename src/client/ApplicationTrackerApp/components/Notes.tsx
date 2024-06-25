@@ -21,9 +21,9 @@ export default function Notes(props){
 
     const formData = JSON.parse(localStorage.getItem('cardData'));
     
-    formData[currentCard].notes = noteContent;
-    updateNote(noteContent)
-    console.log("updated Note Value in Notes", noteContent);
+    formData[currentCard].notes = currentNote;
+    setCurrentNote(currentNote)
+    console.log("updated Note Value in Notes", currentNote);
     localStorage.setItem('cardData', JSON.stringify(formData));
 
   }
