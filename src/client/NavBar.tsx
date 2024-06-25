@@ -9,7 +9,7 @@ export default function NavBar(){
 
     <div className="navbar">
       <a> <Link to="/">Home </Link></a>
-      <a> <Link to="/apptracker"> App Tracker </Link></a>
+      <a> <Link to="/apptracker"> Job Application Hub </Link></a>
     </div>
 
   )

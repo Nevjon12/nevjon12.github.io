@@ -1,40 +1,43 @@
+import { useEffect, useRef } from "react";
+
 export default function Notes(props){
 
   const currentCard = props.currentCard;
-  const currentNote = props.currentNote || "No card selected" ;
+  const currentNote = props.currentNote;
   const setCurrentNote = props.setCurrentNote
-  
 
-  // const onChange = (event)=>{
-  //   setNoteContent(`${currentNote}${event.target.value}`);
-  //   console.log(noteContent)
-  // }
 
+  const onChange = async (e)=>{
+    if(typeof(currentCard) === "number"){
+    const editedNote = e.target.value;
     
 
- 
-
-
-  const saveNote = (event) => {
-    event.preventDefault()
-
-
-    const formData = JSON.parse(localStorage.getItem('cardData'));
-    
-    formData[currentCard].notes = currentNote;
-    setCurrentNote(currentNote)
-    console.log("updated Note Value in Notes", currentNote);
+    const formData = JSON.parse(localStorage.getItem(`cardData`))
+    formData[currentCard].notes = editedNote;
     localStorage.setItem('cardData', JSON.stringify(formData));
 
+    setCurrentNote(editedNote);
+    }
   }
+
+  
+  
+
+
 
   
 
 return (
   <form className="notes">
 
-  <textarea  name='notetext' style={{width:'100%', boxSizing:'border-box', height:'90%'}} value={currentNote}  /> 
-  <button type='submit' onClick={saveNote}>Save Note</button>
+  <textarea
+    name='notetext' 
+    style={{width:'100%', boxSizing:'border-box', height:'100%'}} 
+    value={currentNote}
+    placeholder="Choose a card to edit notes"
+    onChange={onChange}
+  >
+  </textarea> 
   </form>
 
 )

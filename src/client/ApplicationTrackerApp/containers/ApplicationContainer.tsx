@@ -7,7 +7,7 @@ export default function ApplicationContainer(props){
   return(
 
       <div className="apps">
-        <h1>Applications</h1>
+        <h1>Existing Job Applications</h1>
         <div className="cards">
         {
           cards.map((card, index) => {

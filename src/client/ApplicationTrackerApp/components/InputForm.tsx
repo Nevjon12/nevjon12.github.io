@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function InputForm(props){
 
-  const updateState = props.state.setCards;
+  const setCards = props.setCards;
  
 
 
@@ -34,7 +34,7 @@ const handleSubmit = () => {
 
   localStorage.setItem('cardData', JSON.stringify(updatedSubmissions));
 
-  updateState(updatedSubmissions);
+  setCards(updatedSubmissions);
 
   // Clear the form
   setFormValues({
@@ -59,7 +59,8 @@ const handleSubmit = () => {
         justifyContent: "center",
         alignItems: 'center',
         flexDirection: 'column',
-        paddingBottom: '10px'
+        paddingBottom: '10px',
+        marginTop: '10px'
       }} onSubmit={handleSubmit}>
         <input type="text" name='position' placeholder={'Position'} className="input" value={formValues.position} onChange={handleChange}></input>
         <input  type="text" name='companyName' placeholder={'Company Name'} className="input" value={formValues.companyName} onChange={handleChange}></input>

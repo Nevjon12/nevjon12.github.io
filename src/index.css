@@ -33,6 +33,12 @@ p{
   border-width: 1px;
 }
 
+.input{
+  margin: 5px;
+
+}
+
+
 .apps{
   grid-area: mainl;
   margin: 5px;
@@ -49,16 +55,6 @@ p{
   border-color: black;
   
 }
-
-
-
-.inputcontainer{
-  display: grid
-}
-
-
-
-
 
 .cards{
   display: flex;

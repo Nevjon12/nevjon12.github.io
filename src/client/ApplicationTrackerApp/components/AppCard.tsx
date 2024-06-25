@@ -9,9 +9,10 @@ export default function AppCard(props){
   };
 
   const handleClick = ()=>{
-    
+    const formData = JSON.parse(localStorage.getItem(`cardData`))    
+
     props.setCurrentCard(props.id)
-    props.setCurrentNote(props.card.notes)
+    props.setCurrentNote(formData[props.id].notes)
   }
 
   return(
@@ -21,6 +22,8 @@ export default function AppCard(props){
       <br />
       Role: {props.card.position}
       <br />
+      Date You Applied: {props.card.date}
+      <br/>
       <button onClick={handleDelete}> Delete </button>
       
       
