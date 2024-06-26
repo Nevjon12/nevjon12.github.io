@@ -17,8 +17,8 @@ export default function BudgetVContainer(){
   const [viewPeriod, setVPer]= useState(6);
   const [baseLine, setBLine]= useState(50);
   const [goalBalance, setGoal]= useState(100);
-  const [expenseList, setExL]= useState(["Bills"]);
-  const [incomeList, setIncL]= useState(["Job"]);
+  // const [expenseList, setExL]= useState([]);
+  // const [incomeList, setIncL]= useState([]);
 
   //localStorage template for state to be passed to visualizer
 
@@ -30,8 +30,8 @@ export default function BudgetVContainer(){
     viewPeriod : viewPeriod,
     baseLine : baseLine,
     goalBalance : goalBalance,
-    expenseList : expenseList,
-    incomeList : incomeList 
+    // expenseList : expenseList,
+    // incomeList : incomeList 
   
     }
   ) 
@@ -55,8 +55,8 @@ export default function BudgetVContainer(){
       viewPeriod,
       baseLine,
       goalBalance,
-      expenseList,
-      incomeList 
+      // expenseList,
+      // incomeList 
     ]); 
 
 
@@ -75,8 +75,8 @@ export default function BudgetVContainer(){
             currentView={currentView}
             baseLine={baseLine}
             goalBalance={goalBalance}
-            expenseList={expenseList}
-            incomeList={incomeList}
+            // expenseList={expenseList}
+            // incomeList={incomeList}
         /> 
         <br />
         <CurrentBalance currentBalance={currentBalance} setCB={setCB }/> <br />
@@ -90,8 +90,8 @@ export default function BudgetVContainer(){
           goalBalance={goalBalance}
           setGoal={setGoal}
         /> <br />
-        <Income incomeList={incomeList} setIncL={setIncL} /> <br />
-        <Expenses expenseList={expenseList} setExL={setExL} /> 
+        <Income   /> <br />
+        <Expenses   /> 
         </div>
       
     </>

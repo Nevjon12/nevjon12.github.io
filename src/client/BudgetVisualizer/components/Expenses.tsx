@@ -1,7 +1,7 @@
-export default function Expenses(props){
+export default function Expenses(/*props*/){
 
-  const expenseList = props.expenseList;
-  const setExL = props.setExL;
+  // const expenseList = props.expenseList;
+  // const setExL = props.setExL;
 
 
   return(
