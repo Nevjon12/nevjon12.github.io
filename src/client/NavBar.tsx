@@ -10,6 +10,7 @@ export default function NavBar(){
     <div className="navbar">
       <a> <Link to="/">Home </Link></a>
       <a> <Link to="/apptracker"> Job Application Hub </Link></a>
+      <a> <Link to="/budgetVisualizer"> Budget Visualizer </Link></a>
     </div>
 
   )

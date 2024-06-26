@@ -1,5 +1,4 @@
 import ApplicationContainer from "./containers/ApplicationContainer";
-import InputContainer from "./containers/InputContainer";
 import InputForm from "./components/InputForm";
 import { useEffect, useState } from "react";
 import Notes from "./components/Notes";

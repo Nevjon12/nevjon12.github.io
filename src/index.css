@@ -14,21 +14,25 @@ p{
 
 
 .main{
+  
+  margin-left: 20%;
+  margin-right: 20%;
+
+  border-style: double;
   display: grid;
-  grid-template-columns: auto auto auto 35%;
+  grid-template-columns: 15% 15% 15% 55%;
   grid-template-rows: auto;
   grid-template-areas:
     "header header header header"
     "mainu mainu mainu notes"
     "mainl mainl mainl notes"
-    "footer footer footer footer"
 }
 
 
 .inputs{
   grid-area: mainu;
   margin: 5px;
-  border-style: solid;
+  border-style: double;
   border-color: black;
   border-width: 1px;
 }
@@ -42,7 +46,7 @@ p{
 .apps{
   grid-area: mainl;
   margin: 5px;
-  border-style: solid;
+  border-style: double;
   border-color: black;
   border-width: 1px;
   padding: 5px;
@@ -50,11 +54,7 @@ p{
 }
 
 
-.root{
-  border-style: dashed;
-  border-color: black;
-  
-}
+
 
 .cards{
   display: flex;
@@ -83,7 +83,7 @@ p{
 
 .notes{
   grid-area: notes;
-  border-style:solid;
+  border-style:double;
   border-color: black;
   margin: 5px;
 }
@@ -113,5 +113,122 @@ a{
 
   grid-area: notes;
   max-height: 20px;
+
+}
+
+@media only screen and (max-width: 420px) {
+
+  .main{
+    border: 0px;
+
+    margin-left: 3%;
+    margin-right: 2%;
+    width: 370px;
+    padding: 0%;
+ 
+  }
+
+  .input{
+
+  width: 80%;
+
+  }
+
+  h1{
+
+    font-size: 25px;
+  
+  }
+
+  .appcard{
+
+    font-size: 14px;
+    
+  }
+
+}
+
+
+/*The following are styling specifically for the */
+
+
+
+
+
+
+.budgetVisualizer{
+
+  margin-left: 20%;
+  margin-right: 20%;
+
+  display:grid;
+  grid-template-areas:
+  "graph graph graph graph"
+  "graph graph graph graph"
+  "cBalance cBalance empty expense"
+  "vSettings vSettings empty expense"
+  "vSettings vSettings empty expense"
+  "income income empty expense"
+  "income income empty expense";
+
+  grid-template-columns: 30% 35% 2% 30%;
+
+}
+
+
+
+
+
+div.budgetVisualizer{
+
+  border-style: double;
+  padding: 5px;
+  min-width: 400px;
+
+
+
+
+}
+
+div.budgetComponent{
+  
+  
+  border-style: double;
+  padding: 20px;
+  margin: 5px;
+
+
+
+}
+
+.graph{
+
+  border-style: solid;
+  margin: 5px;
+  padding-bottom: 20px;
+
+}
+
+
+
+
+
+@media only screen and (max-width: 420px) {
+
+  .budgetVisualizer{
+
+  margin-left: 0%;
+  margin-right: 2%;
+  width: 370px;
+  padding: 0%;
+
+  }
+
+  div.budgetVisualizer{
+
+
+  border: 0px;
+
+  }
 
 }
