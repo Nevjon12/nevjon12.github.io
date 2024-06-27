@@ -17,8 +17,9 @@ export default function BudgetVContainer(){
   const [viewPeriod, setVPer]= useState(6);
   const [baseLine, setBLine]= useState(50);
   const [goalBalance, setGoal]= useState(100);
-  // const [expenseList, setExL]= useState([]);
-  // const [incomeList, setIncL]= useState([]);
+  const [adjustments, setAdjustments] = useState([{Day1: ["1", "3", "5"]} , {Day2: ["2", "4", "6"]}])
+  const [expenseList, setExL]= useState([{day:"Date1", amount:-5, expense:"Shudder"}, {day:"Date2", amount:-900, expense:"Rent"} ]);
+  const [incomeList, setIncL]= useState([{day:"Date1", amount:20, expense:"DogWalk"}, {day:"Date3", amount:600, expense:"PayDay"} ]);
 
   //localStorage template for state to be passed to visualizer
 
@@ -30,8 +31,7 @@ export default function BudgetVContainer(){
     viewPeriod : viewPeriod,
     baseLine : baseLine,
     goalBalance : goalBalance,
-    // expenseList : expenseList,
-    // incomeList : incomeList 
+    adjustments : adjustments
   
     }
   ) 
@@ -55,8 +55,9 @@ export default function BudgetVContainer(){
       viewPeriod,
       baseLine,
       goalBalance,
-      // expenseList,
-      // incomeList 
+      adjustments,
+      expenseList,
+      incomeList 
     ]); 
 
 
@@ -70,13 +71,6 @@ export default function BudgetVContainer(){
         
         <GraphContainer  //most of therse props will be replaced once we confirm state is being updated correctly
             vDataState={vDataState}
-            currentBalance={currentBalance} 
-            viewPeriod={viewPeriod}
-            currentView={currentView}
-            baseLine={baseLine}
-            goalBalance={goalBalance}
-            // expenseList={expenseList}
-            // incomeList={incomeList}
         /> 
         <br />
         <CurrentBalance currentBalance={currentBalance} setCB={setCB }/> <br />
@@ -90,8 +84,8 @@ export default function BudgetVContainer(){
           goalBalance={goalBalance}
           setGoal={setGoal}
         /> <br />
-        <Income   /> <br />
-        <Expenses   /> 
+        <Income   adjustments={adjustments} setAdjustments={setAdjustments} incomeList={incomeList} setIncL={setIncL} /> <br />
+        <Expenses  adjustments={adjustments} setAdjusments={setAdjustments} expenseList={expenseList} setExL={setExL} /> 
         </div>
       
     </>
