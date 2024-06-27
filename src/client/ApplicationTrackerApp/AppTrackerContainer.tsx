@@ -27,17 +27,18 @@ export default function AppTrackerContainer(){
 
   return(
 
-    <div>
-      <h1>Job Application Hub</h1>
+    <>
 
-      <div className="applicationTracker">    
-        <div className="inputForm">
-        <InputForm setCards={setCards}/>
-        </div>
-        <ApplicationContainer cards={cards} setCards={setCards} setCurrentCard={setCurrentCard} setCurrentNote={setCurrentNote} />
-        <Notes currentCard={currentCard} currentNote={currentNote} setCurrentNote={setCurrentNote}/>
+    <div className="applicationTracker">
+      
+      <h1>Job Application Hub</h1>   
+      <div className="inputForm">
+      <InputForm setCards={setCards}/>
       </div>
+      <ApplicationContainer cards={cards} setCards={setCards} setCurrentCard={setCurrentCard} setCurrentNote={setCurrentNote} />
+      <Notes currentCard={currentCard} currentNote={currentNote} setCurrentNote={setCurrentNote}/>
     </div>
+    </>
   )
 
 

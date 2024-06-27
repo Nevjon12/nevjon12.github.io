@@ -1,7 +1,7 @@
 div#root{
 
   width:unset;
-  background-color: white;
+  background-color:#36454F;
 
 }
 
@@ -13,17 +13,20 @@ body{
 
 
 nav{
-
+  width: unset;
   border-style: double;
   border-radius: 5px;
-
-  
+  background-color: white;
+  max-height: min-content;
 
 }
 
 div{
 
   border-radius: 5px;
+  background-color: white;
+
+
 
 
 }
@@ -44,6 +47,7 @@ h1{
   align-items: center;
   position: relative;
   border-radius: 5px;
+  grid-area: header;
 }
 
 p{
@@ -52,6 +56,7 @@ p{
   justify-content: center;
   align-items: center;
   position: relative;
+  padding-bottom: 5%;
 }
 
 input{
@@ -74,4 +79,51 @@ form{
   border-radius: 5px;
   display: grid;
 
+}
+
+a{
+
+  margin: 10px;
+  display: inline-block;
+  line-height: normal;
+
+}
+
+
+@media only screen and (max-width: 420px) {
+
+  nav{
+
+    display: inline-flex;
+
+  }
+
+
+
+  input{
+
+  width: 90%;
+
+  }
+
+  h1{
+
+    font-size: 25px;
+  
+  }
+
+
+
+  form{
+  
+  
+  margin: 5px;
+  margin: 5px;
+  border-style: double;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 5px;
+  display: grid;
+
+  }
 }

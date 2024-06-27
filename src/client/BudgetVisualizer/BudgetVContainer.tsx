@@ -66,10 +66,10 @@ export default function BudgetVContainer(){
 
   return(
     <>
-      <h1>Budget Visualizer goes here</h1> 
-      <br />
+      
+    
       <div className="budgetVisualizer" >
-        
+        <h1>Budget Visualizer goes here</h1> 
         <GraphContainer  //most of therse props will be replaced once we confirm state is being updated correctly
             vDataState={vDataState}
         /> 

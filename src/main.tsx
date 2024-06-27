@@ -14,9 +14,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
       <NavBar/>
    
       <div style={{backgroundColor:"#36454F", height:"10px", borderRadius:"0px"}}></div>
-      
+      <br />
       <App />
-      <div style={{height:"100px", backgroundColor:"white"}}  ></div>
+      
     </HashRouter>
 );
 

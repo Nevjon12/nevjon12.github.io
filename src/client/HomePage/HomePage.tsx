@@ -1,7 +1,7 @@
 export default function HomePage(){
 
   return(
-    <div>
+    <div style={{borderStyle:"double"}}>
     <h1>Welcome to my portfolio!!</h1>
     <p>Thank you so much for visiting! As you can see this is a work in progress.
       But feel free to test out any of the small applications I've built here.

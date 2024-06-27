@@ -1,10 +1,10 @@
 
+/* Application Grid Setups */
+
 .applicationTracker{
   
   height: 90%;
   padding: 5px;
-  margin-left: 5%;
-  margin-right: 5%;
   border-style: double;
   display: grid;
   grid-template-columns: 15% 15% 15% 55%;
@@ -20,10 +20,10 @@
 .budgetVisualizer{
 
 
-  margin-left: 5%;
-  margin-right: 5%;
+
   display:grid;
   grid-template-areas:
+  "header header header header"
   "graph graph graph graph"
   "graph graph graph graph"
   "cBalance cBalance empty expense"
@@ -38,10 +38,7 @@
 
 
 
-div.navbar{
-
-  width: unset;
-}
+/* Styling for ApplicationTracker */
 
 div.inputForm{
 
@@ -49,9 +46,6 @@ div.inputForm{
 
 
 }
-
-
-
 
 .apps{
   grid-area: mainl;
@@ -62,9 +56,6 @@ div.inputForm{
   padding: 5px;
 
 }
-
-
-
 
 .cards{
   display: flex;
@@ -98,22 +89,6 @@ div.inputForm{
   margin: 5px;
 }
 
-
-.navbar{
-
-  grid-area: header;
-  border-style: double;
-
-}
-
-a{
-
-  margin: 10px;
-  display: inline-block;
-  line-height: normal;
-
-}
-
 .addNote{
 
   grid-area: notes;
@@ -121,59 +96,21 @@ a{
 
 }
 
+/* Mobile Styling ApplicationTracker */
+
+
 @media only screen and (max-width: 420px) {
 
-  nav{
-
-    display: inline-flex;
-
-  }
-
-  .main{
-    border: 0px;
-
-    margin-left: 3%;
-    margin-right: 2%;
-    width: 370px;
-    padding: 0%;
- 
-  }
-
-  input{
-
-  width: 90%;
-
-  }
-
-  h1{
-
-    font-size: 25px;
-  
-  }
-
-  .appcard{
+    .appcard{
 
     font-size: 14px;
     
   }
 
-  form{
-  
-  
-  margin: 5px;
-  margin: 5px;
-  border-style: double;
-  border-color: black;
-  border-width: 1px;
-  border-radius: 5px;
-  display: grid;
-
-}
-
 }
 
 
-/*The following are styling specifically for the budget app*/
+/*Styling for the budget app*/
 
 
 
@@ -182,21 +119,15 @@ div.budgetVisualizer{
 
   border-style: double;
   padding: 5px;
-  min-width: 400px;
-
-
-
+  min-width: fit-content;
 
 }
 
 div.budgetComponent{
-  
-  
+   
   border-style: double;
   padding: 20px;
   margin: 5px;
-
-
 
 }
 
@@ -208,25 +139,15 @@ div.budgetComponent{
 
 }
 
-
-
-
-
 @media only screen and (max-width: 420px) {
 
   .budgetVisualizer{
 
   margin-left: 0%;
-  margin-right: 2%;
+  margin-right: 0%;
   width: 370px;
   padding: 0%;
-
-  }
-
-  div.budgetVisualizer{
-
-  min-width: fit-content;
-  border: 0px;
+  
 
   }
 
