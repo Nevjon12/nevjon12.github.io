@@ -3,13 +3,13 @@ import { IncomeProps } from "../interfaces";
 export default function Income(props : IncomeProps){
   const {adjustments, setAdjustments, incomeList, setIncL} = props
 
+  console.log(adjustments, setAdjustments, incomeList, setIncL)
 
-
-  const addNewExpense = (e)=>{
-    //Take form data and save it in an object
-    const newExpense = e.target.value;
-    //
-  }
+  // const addNewExpense = (e)=>{
+  //   //Take form data and save it in an object
+  //   const newExpense = e.target.value;
+  //   //
+  // }
 
 
   return(

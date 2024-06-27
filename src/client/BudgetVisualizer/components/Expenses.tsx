@@ -1,9 +1,11 @@
+
 import { ExpensesProps } from "../interfaces";
 
 export default function Expenses(props : ExpensesProps){
 
   const {adjustments, setAdjustments, expenseList, setExL} = props
 
+  console.log(adjustments, setAdjustments, expenseList, setExL)
 
 
   return(

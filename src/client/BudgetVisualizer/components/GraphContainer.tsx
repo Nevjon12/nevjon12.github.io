@@ -4,7 +4,7 @@ export default function GraphContainer(props: GraphProps){
 
   const vDataState = props.vDataState;
 
-
+  console.log(vDataState)
 
   return(
 
