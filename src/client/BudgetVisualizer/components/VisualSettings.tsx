@@ -1,15 +1,18 @@
-export default function VisualSettings(props){
+import { VisualSettingsProps } from "../interfaces"
 
-  const currentView=props.currentView
-  const setV=props.setV
-  const viewPeriod=props.viewPeriod
-  const setVPer=props.setVPer
-  const baseLine=props.baseLine
-  const setBLine=props.setBLine
-  const goalBalance=props.goalBalance
-  const setGoal=props.setGoal
+export default function VisualSettings(props : VisualSettingsProps){
 
-  
+  const {
+  currentView,
+  setV,
+  viewPeriod,
+  setVPer,
+  baseLine,
+  setBLine,
+  goalBalance,
+  setGoal} = props
+
+
   return(
 
     <div style={{gridArea:"vSettings"}} className="budgetComponent">

@@ -1,9 +1,8 @@
-export default function CurrentBalance(props){
+import { CurrentBalanceProps } from "../interfaces";
 
-    const currentBalance = props.currentBalance;
-    const setCB = props.setCB;
+export default function CurrentBalance(props : CurrentBalanceProps){
 
-
+    const {currentBalance, setCB} = props;
 
   return(
 

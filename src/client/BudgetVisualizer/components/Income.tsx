@@ -1,9 +1,15 @@
-export default function Income(props){
+import { IncomeProps } from "../interfaces";
 
-  const adjustments = props.adjustments;
-  const setAdjustments = props.setAdjustments;
-  const incomeList = props.incomeList;
-  const setIncL = props.setIncL;
+export default function Income(props : IncomeProps){
+  const {adjustments, setAdjustments, incomeList, setIncL} = props
+
+
+
+  const addNewExpense = (e)=>{
+    //Take form data and save it in an object
+    const newExpense = e.target.value;
+    //
+  }
 
 
   return(

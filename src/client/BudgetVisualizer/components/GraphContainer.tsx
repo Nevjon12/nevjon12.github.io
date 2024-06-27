@@ -1,6 +1,8 @@
-export default function GraphContainer(props){
+import { GraphProps } from "../interfaces";
 
-  // const vDataState = props.vDataState;
+export default function GraphContainer(props: GraphProps){
+
+  const vDataState = props.vDataState;
 
 
 

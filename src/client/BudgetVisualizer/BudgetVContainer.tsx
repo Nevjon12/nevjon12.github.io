@@ -4,7 +4,8 @@ import CurrentBalance from "./components/CurrentBalance";
 import VisualSettings from "./components/VisualSettings";
 import Income from "./components/Income";
 import Expenses from "./components/Expenses";
-
+import { GraphData, Transaction } from "./interfaces";
+import { Adjustment } from "./interfaces";
 
 
 
@@ -12,18 +13,18 @@ export default function BudgetVContainer(){
 
   //All state being manipulated by app:
 
-  const [currentBalance, setCB ] = useState(0);
-  const [currentView, setV]= useState("Line Graph");
-  const [viewPeriod, setVPer]= useState(6);
-  const [baseLine, setBLine]= useState(50);
-  const [goalBalance, setGoal]= useState(100);
-  const [adjustments, setAdjustments] = useState([{Day1: ["1", "3", "5"]} , {Day2: ["2", "4", "6"]}])
-  const [expenseList, setExL]= useState([{day:"Date1", amount:-5, expense:"Shudder"}, {day:"Date2", amount:-900, expense:"Rent"} ]);
-  const [incomeList, setIncL]= useState([{day:"Date1", amount:20, expense:"DogWalk"}, {day:"Date3", amount:600, expense:"PayDay"} ]);
+  const [currentBalance, setCB ] = useState<number>(0);
+  const [currentView, setV]= useState<string>("Line Graph");
+  const [viewPeriod, setVPer]= useState<number>(6);
+  const [baseLine, setBLine]= useState<number>(50);
+  const [goalBalance, setGoal]= useState<number>(100);
+  const [adjustments, setAdjustments] = useState<Adjustment[]>([{Day1: ["1", "3", "5"]} , {Day2: ["2", "4", "6"]}])
+  const [expenseList, setExL]= useState<Transaction[]>([{day:"Date1", amount:-5, expense:"Shudder"}, {day:"Date2", amount:-900, expense:"Rent"} ]);
+  const [incomeList, setIncL]= useState<Transaction[]>([{day:"Date1", amount:20, expense:"DogWalk"}, {day:"Date3", amount:600, expense:"PayDay"} ]);
 
   //localStorage template for state to be passed to visualizer
 
-  const [vDataState , setVDataState] = useState(
+  const [vDataState , setVDataState] = useState<GraphData>(
     {
 
     currentBalance : currentBalance,
@@ -85,7 +86,7 @@ export default function BudgetVContainer(){
           setGoal={setGoal}
         /> <br />
         <Income   adjustments={adjustments} setAdjustments={setAdjustments} incomeList={incomeList} setIncL={setIncL} /> <br />
-        <Expenses  adjustments={adjustments} setAdjusments={setAdjustments} expenseList={expenseList} setExL={setExL} /> 
+        <Expenses  adjustments={adjustments} setAdjustments={setAdjustments} expenseList={expenseList} setExL={setExL} /> 
         </div>
       
     </>
