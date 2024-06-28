@@ -1,64 +1,78 @@
 import { VisualSettingsProps } from "../interfaces"
+import { useEffect } from "react";
 
 export default function VisualSettings(props : VisualSettingsProps){
+  const vDataState = props.vDataState;
+  const currentView = props.vDataState.currentView;
+  const viewPeriod = props.vDataState.viewPeriod;
+  const baseLine = props.vDataState.baseLine;
+  const goalBalance = props.vDataState.goalBalance;
+  const updateVSettings = props.setVDataState
 
-  const {
-  currentView,
-  setV,
-  viewPeriod,
-  setVPer,
-  baseLine,
-  setBLine,
-  goalBalance,
-  setGoal} = props
 
+
+  useEffect(() => {
+  
+    localStorage.setItem('VData', JSON.stringify(vDataState));
+    
+  }, [vDataState])
 
   return(
 
     <div style={{gridArea:"vSettings"}} className="budgetComponent">
-      VisualSettings <br />
+      Settings <br />
 
-
-      Current View is: {currentView} <button
+      {currentView}
+      <button
         onClick={()=>{
           if(currentView === "Line Graph"){
-            setV("Bar Graph");
-            return
+            updateVSettings({
+              ...vDataState,
+              currentView: "Bar Graph"});
+              return;
           }
-          setV("Line Graph")
+            updateVSettings({
+              ...vDataState,
+              currentView: "Line Graph"});
         }}
 
-      >Change the View
+      >Toggle Graph Type
       </button> <br />
 
 
-      Current View Period is : {viewPeriod} <button
+      <button
         onClick={()=>{
           let today = viewPeriod;
-          today++
-          setVPer(today);
+          today++;
+          updateVSettings({
+            ...vDataState,
+            viewPeriod: today});;
 
         }}
     
       >Update View Period</button> <br />
 
 
-      You Current Baseline is: {baseLine} <button
+      <button
         onClick={()=>{
           let currentBaseLine = baseLine;
           currentBaseLine += 50;
-          setBLine(currentBaseLine);
+          updateVSettings({
+            ...vDataState,
+            baseLine: currentBaseLine});
 
         }}
 
       >Set New Base Line</button> <br />
 
 
-      Your Current Goal is: {goalBalance} <button
+      <button
       onClick={()=>{
           let currentGoal = goalBalance;
           currentGoal += 100;
-          setGoal(currentGoal);
+          updateVSettings({
+            ...vDataState,
+            goalBalance: currentGoal});
 
         }}
 

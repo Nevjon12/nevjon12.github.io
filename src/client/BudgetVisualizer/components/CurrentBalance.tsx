@@ -1,20 +1,42 @@
 import { CurrentBalanceProps } from "../interfaces";
+import { useEffect } from "react";
 
 export default function CurrentBalance(props : CurrentBalanceProps){
+  const vDataState = props.vDataState;
+  const setNewBalance = props.setVDataState
 
-    const {currentBalance, setCB} = props;
+
+
+
+
+  useEffect(() => {
+  
+    localStorage.setItem('VData', JSON.stringify(vDataState));
+    
+  }, [vDataState])
+    
 
   return(
 
     <div 
       style={{gridArea:"cBalance"}} 
       className="budgetComponent">
-      CurrentBalance is : {currentBalance} <button onClick={()=>{
-      const newBalance = currentBalance + 1
-      setCB(newBalance)}}>Add to balance</button>   
-      
-      
-    </div>
+      CurrentBalance is : {vDataState.currentBalance}
+      <button
+
+        onClick={async()=>{
+          const newBalance= vDataState.currentBalance + 1;
+
+          setNewBalance({
+          ...vDataState,
+          currentBalance: newBalance,
+
+          });
+        
+        }}> Add to balance
+        
+      </button>
+      </div>
   );
 
 

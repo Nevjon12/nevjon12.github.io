@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState} from "react"
 import GraphContainer from "./components/GraphContainer";
 import CurrentBalance from "./components/CurrentBalance";
 import VisualSettings from "./components/VisualSettings";
@@ -11,55 +11,43 @@ import { Adjustment } from "./interfaces";
 
 export default function BudgetVContainer(){
 
-  //All state being manipulated by app:
 
-  const [currentBalance, setCB ] = useState<number>(0);
-  const [currentView, setV]= useState<string>("Line Graph");
-  const [viewPeriod, setVPer]= useState<number>(6);
-  const [baseLine, setBLine]= useState<number>(50);
-  const [goalBalance, setGoal]= useState<number>(100);
-  const [adjustments, setAdjustments] = useState<Adjustment[]>([{Day1: ["1", "3", "5"]} , {Day2: ["2", "4", "6"]}])
-  const [expenseList, setExL]= useState<Transaction[]>([{day:"Date1", amount:-5, expense:"Shudder"}, {day:"Date2", amount:-900, expense:"Rent"} ]);
-  const [incomeList, setIncL]= useState<Transaction[]>([{day:"Date1", amount:20, expense:"DogWalk"}, {day:"Date3", amount:600, expense:"PayDay"} ]);
 
-  //localStorage template for state to be passed to visualizer
+  const [adjustments, setAdjustments] = useState<Adjustment>({
 
-  const [vDataState , setVDataState] = useState<GraphData>(
-    {
+      expenses: [ {day:"Date1", amount:-5, expense:"Shudder"}, {day:"Date2", amount:-900, expense:"Rent"} ],
 
-    currentBalance : currentBalance,
-    currentView : currentView,
-    viewPeriod : viewPeriod,
-    baseLine : baseLine,
-    goalBalance : goalBalance,
-    adjustments : adjustments
+      income: [ {day:"Date1", amount:20, expense:"DogWalk"}, {day:"Date3", amount:600, expense:"PayDay"} ],
+
+      totalExpenses: ()=>{return this.calculateTotal(this.expenses)},
+
+      totalIncome: ()=>{return this.calculateTotal(this.income)},
+
+      calculateTotal: (adjustment:Transaction[])=> {
+        let total = 0;
+        for (const transaction of adjustment){
+          total = total += transaction.amount;
+        }
+        return total
+      }
+
+    });
   
-    }
-  ) 
+  const currentlyStoredData = JSON.parse(localStorage.getItem('VData'));
+
+
+
+  const [vDataState , setVDataState] = useState<GraphData>(currentlyStoredData || {
+    currentBalance: 0,
+    currentView: "Line Graph",
+    viewPeriod: 6,
+    baseLine: 50,
+    goalBalance: 100,
+  });
 
 
 
 
-
-
-  useEffect(()=>{ //have the application re-render based on any changes in state
-      console.log('state changed')
-
-      const visualizerDataString = localStorage.getItem('VData');
-      const visualizerData = visualizerDataString ? JSON.parse(visualizerDataString) : [];
-
-      setVDataState(visualizerData);
-    
-    }, [ 
-      currentBalance,
-      currentView,
-      viewPeriod,
-      baseLine,
-      goalBalance,
-      adjustments,
-      expenseList,
-      incomeList 
-    ]); 
 
 
 
@@ -74,19 +62,13 @@ export default function BudgetVContainer(){
             vDataState={vDataState}
         /> 
         <br />
-        <CurrentBalance currentBalance={currentBalance} setCB={setCB }/> <br />
+        <CurrentBalance vDataState={vDataState} setVDataState={setVDataState}/> <br />
         <VisualSettings 
-          currentView={currentView}
-          setV={setV}
-          viewPeriod={viewPeriod}
-          setVPer={setVPer}
-          baseLine={baseLine}
-          setBLine={setBLine}
-          goalBalance={goalBalance}
-          setGoal={setGoal}
+          vDataState={vDataState}
+          setVDataState={setVDataState}
         /> <br />
-        <Income   adjustments={adjustments} setAdjustments={setAdjustments} incomeList={incomeList} setIncL={setIncL} /> <br />
-        <Expenses  adjustments={adjustments} setAdjustments={setAdjustments} expenseList={expenseList} setExL={setExL} /> 
+        <Income   adjustments = {adjustments}  setAdjustments={setAdjustments} incomeList={adjustments.income} /> <br />
+        <Expenses  adjustments= {adjustments} setAdjustments={setAdjustments} expenseList={adjustments.expenses} /> 
         </div>
       
     </>

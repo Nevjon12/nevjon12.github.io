@@ -3,16 +3,18 @@ import { ExpensesProps } from "../interfaces";
 
 export default function Expenses(props : ExpensesProps){
 
-  const {adjustments, setAdjustments, expenseList, setExL} = props
+  const adjustments = props.adjustments;
+  const updateState = props.setAdjustments;
+  const expenseList = props.expenseList;
 
-  console.log(adjustments, setAdjustments, expenseList, setExL)
+  const totalExpenses = adjustments.calculateTotal(expenseList)
 
 
   return(
 
     <div  style={{gridArea:"expense"}} className="budgetComponent">
 
-    <>Expenses</> <br /><br />
+    <>Total expenses: ${totalExpenses}</> <br /><br />
     {expenseList.map((exp)=>{
       return <div>Day:{exp.day} Amnt:{exp.amount} Exp:{exp.expense}<br /> <br /></div>
     })}
