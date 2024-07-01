@@ -3,8 +3,8 @@ import { GraphProps } from "../interfaces";
 export default function GraphContainer(props: GraphProps){
 
   const vDataState = props.vDataState;
+  const graphType = vDataState.currentView
 
-  console.log(vDataState)
 
   return(
 
@@ -12,7 +12,7 @@ export default function GraphContainer(props: GraphProps){
       Graph Container <br/>
       <div className="graph">
       
-        Imagine this is a graph <br /> <br />
+        Imagine this is a {graphType}<br /> <br />
 
       </div>
     </div>

@@ -1,68 +1,35 @@
 import { VisualSettingsProps } from "../interfaces"
+import { useEffect } from "react";
+
+import GraphTypeSelector from "./vSettingComponents/GraphTypeSelector";
+import ViewTimeRange from "./vSettingComponents/ViewTimeRange";
+import BaseLineSelector from "./vSettingComponents/BaseLineSelector";
+import GoalSelector from "./vSettingComponents/GoalSelector";
 
 export default function VisualSettings(props : VisualSettingsProps){
+  const vDataState = props.vDataState;
+  const currentView = props.vDataState.currentView;
+  const viewPeriod = props.vDataState.viewPeriod;
+  const baseLine = props.vDataState.baseLine;
+  const goalBalance = props.vDataState.goalBalance;
+  const updateVSettings = props.setVDataState
 
-  const {
-  currentView,
-  setV,
-  viewPeriod,
-  setVPer,
-  baseLine,
-  setBLine,
-  goalBalance,
-  setGoal} = props
+  console.log("viewPeriod", currentView)
 
-
+  useEffect(() => {
+  
+    localStorage.setItem('VData', JSON.stringify(vDataState));
+    
+  }, [vDataState])
+  
   return(
 
-    <div style={{gridArea:"vSettings"}} className="budgetComponent">
-      VisualSettings <br />
+    <div style={{gridArea:"vSettings"}} className="budgetComponent" id="BudgetVSettings">
 
-
-      Current View is: {currentView} <button
-        onClick={()=>{
-          if(currentView === "Line Graph"){
-            setV("Bar Graph");
-            return
-          }
-          setV("Line Graph")
-        }}
-
-      >Change the View
-      </button> <br />
-
-
-      Current View Period is : {viewPeriod} <button
-        onClick={()=>{
-          let today = viewPeriod;
-          today++
-          setVPer(today);
-
-        }}
-    
-      >Update View Period</button> <br />
-
-
-      You Current Baseline is: {baseLine} <button
-        onClick={()=>{
-          let currentBaseLine = baseLine;
-          currentBaseLine += 50;
-          setBLine(currentBaseLine);
-
-        }}
-
-      >Set New Base Line</button> <br />
-
-
-      Your Current Goal is: {goalBalance} <button
-      onClick={()=>{
-          let currentGoal = goalBalance;
-          currentGoal += 100;
-          setGoal(currentGoal);
-
-        }}
-
-      >Set New Goal</button> <br />
+      <GraphTypeSelector currentView={currentView} updateVSettings={updateVSettings} vDataState={vDataState}> Toggle Graph Type </GraphTypeSelector>
+      <ViewTimeRange viewPeriod={viewPeriod} updateVSettings={updateVSettings} vDataState={vDataState} />
+      <BaseLineSelector baseLine={baseLine} updateVSettings={updateVSettings} vDataState={vDataState} />
+      <GoalSelector goalBalance={goalBalance} updateVSettings={updateVSettings} vDataState={vDataState} />
 
     </div>
   );
