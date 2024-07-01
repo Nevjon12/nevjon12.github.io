@@ -18,7 +18,7 @@ export default function VisualSettings(props : VisualSettingsProps){
 
   useEffect(() => {
   
-    localStorage.setItem('VData', JSON.stringify(vDataState));
+    localStorage.getItem('VData');
     
   }, [vDataState])
   

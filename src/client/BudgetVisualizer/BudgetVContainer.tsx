@@ -40,7 +40,7 @@ export default function BudgetVContainer(){
 
 
   const [vDataState , setVDataState] = useState<GraphData>(currentlyStoredData || {
-    currentBalance: 0,
+    currentBalance: parseFloat(parseFloat("1.00").toFixed(2)),
     currentView: "Line Graph",
     viewPeriod: [undefined,undefined],
     baseLine: 50,
