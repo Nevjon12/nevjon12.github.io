@@ -4,7 +4,7 @@ import { ExpensesProps } from "../interfaces";
 export default function Expenses(props : ExpensesProps){
 
   const adjustments = props.adjustments;
-  const updateState = props.setAdjustments;
+  // const updateState = props.setAdjustments;
   const expenseList = props.expenseList;
 
   const totalExpenses = adjustments.calculateTotal(expenseList)

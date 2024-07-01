@@ -1,42 +1,39 @@
 import { CurrentBalanceProps } from "../interfaces";
-import { useEffect } from "react";
+import { useState} from "react";
+import CurrentBalanceModal from "./modals/CurrentBalanceModal";
 
 export default function CurrentBalance(props : CurrentBalanceProps){
   const vDataState = props.vDataState;
   const setNewBalance = props.setVDataState
+  const currentBalance = props.vDataState.currentBalance
 
+  const [modalOpen, changeModal] = useState(false)
 
-
-
-
-  useEffect(() => {
   
-    localStorage.setItem('VData', JSON.stringify(vDataState));
+  const displayAmount = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(currentBalance);
     
-  }, [vDataState])
-    
+
+
+
 
   return(
 
     <div 
       style={{gridArea:"cBalance"}} 
       className="budgetComponent">
-      CurrentBalance is : {vDataState.currentBalance}
+
+      <CurrentBalanceModal vDataState={vDataState} setNewBalance={setNewBalance} modalOpen={modalOpen} changeModal={changeModal}  ></CurrentBalanceModal>      
+    
+      <span>{displayAmount}</span>
+      
       <button
 
-        onClick={async()=>{
-          const newBalance= vDataState.currentBalance + 1;
-
-          setNewBalance({
-          ...vDataState,
-          currentBalance: newBalance,
-
-          });
-        
-        }}> Add to balance
-        
+          onClick={()=>{changeModal(!modalOpen)}}> Update Current Balance
+          
       </button>
-      </div>
+      
+    </div>
+
   );
 
 

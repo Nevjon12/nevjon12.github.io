@@ -3,7 +3,7 @@ import { IncomeProps } from "../interfaces";
 export default function Income(props : IncomeProps){
   
   const adjustments = props.adjustments;
-  const updateState = props.setAdjustments;
+  // const updateState = props.setAdjustments;
   const incomeList = props.incomeList;
 
   const totalIncome = adjustments.calculateTotal(incomeList)
