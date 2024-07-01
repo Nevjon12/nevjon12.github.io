@@ -1,6 +1,11 @@
 import { VisualSettingsProps } from "../interfaces"
 import { useEffect } from "react";
 
+import GraphTypeSelector from "./vSettingComponents/GraphTypeSelector";
+import ViewTimeRange from "./vSettingComponents/ViewTimeRange";
+import BaseLineSelector from "./vSettingComponents/BaseLineSelector";
+import GoalSelector from "./vSettingComponents/GoalSelector";
+
 export default function VisualSettings(props : VisualSettingsProps){
   const vDataState = props.vDataState;
   const currentView = props.vDataState.currentView;
@@ -9,74 +14,23 @@ export default function VisualSettings(props : VisualSettingsProps){
   const goalBalance = props.vDataState.goalBalance;
   const updateVSettings = props.setVDataState
 
-
+  console.log("viewPeriod", currentView)
 
   useEffect(() => {
   
     localStorage.setItem('VData', JSON.stringify(vDataState));
     
   }, [vDataState])
-
+  
   return(
 
     <div style={{gridArea:"vSettings"}} className="budgetComponent">
       Settings <br />
 
-      {currentView}
-      <button
-        onClick={()=>{
-          if(currentView === "Line Graph"){
-            updateVSettings({
-              ...vDataState,
-              currentView: "Bar Graph"});
-              return;
-          }
-            updateVSettings({
-              ...vDataState,
-              currentView: "Line Graph"});
-        }}
-
-      >Toggle Graph Type
-      </button> <br />
-
-
-      <button
-        onClick={()=>{
-          let today = viewPeriod;
-          today++;
-          updateVSettings({
-            ...vDataState,
-            viewPeriod: today});;
-
-        }}
-    
-      >Update View Period</button> <br />
-
-
-      <button
-        onClick={()=>{
-          let currentBaseLine = baseLine;
-          currentBaseLine += 50;
-          updateVSettings({
-            ...vDataState,
-            baseLine: currentBaseLine});
-
-        }}
-
-      >Set New Base Line</button> <br />
-
-
-      <button
-      onClick={()=>{
-          let currentGoal = goalBalance;
-          currentGoal += 100;
-          updateVSettings({
-            ...vDataState,
-            goalBalance: currentGoal});
-
-        }}
-
-      >Set New Goal</button> <br />
+      <GraphTypeSelector currentView={currentView} updateVSettings={updateVSettings} vDataState={vDataState}> Toggle Graph Type </GraphTypeSelector>
+      <ViewTimeRange viewPeriod={viewPeriod} updateVSettings={updateVSettings} vDataState={vDataState} />
+      <BaseLineSelector baseLine={baseLine} updateVSettings={updateVSettings} vDataState={vDataState} />
+      <GoalSelector goalBalance={goalBalance} updateVSettings={updateVSettings} vDataState={vDataState} />
 
     </div>
   );
