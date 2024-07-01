@@ -6,6 +6,8 @@ import Income from "./components/Income";
 import Expenses from "./components/Expenses";
 import { GraphData, Transaction } from "./interfaces";
 import { Adjustment } from "./interfaces";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 
 
@@ -40,7 +42,7 @@ export default function BudgetVContainer(){
   const [vDataState , setVDataState] = useState<GraphData>(currentlyStoredData || {
     currentBalance: 0,
     currentView: "Line Graph",
-    viewPeriod: 6,
+    viewPeriod: [undefined,undefined],
     baseLine: 50,
     goalBalance: 100,
   });
@@ -55,22 +57,22 @@ export default function BudgetVContainer(){
   return(
     <>
       
-    
-      <div className="budgetVisualizer" >
-        <h1>Budget Visualizer goes here</h1> 
-        <GraphContainer  //most of therse props will be replaced once we confirm state is being updated correctly
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <div className="budgetVisualizer" >
+          <h1>Budget Visualizer goes here</h1> 
+          <GraphContainer  //most of therse props will be replaced once we confirm state is being updated correctly
+              vDataState={vDataState}
+          /> 
+          <br />
+          <CurrentBalance vDataState={vDataState} setVDataState={setVDataState}/> <br />
+          <VisualSettings 
             vDataState={vDataState}
-        /> 
-        <br />
-        <CurrentBalance vDataState={vDataState} setVDataState={setVDataState}/> <br />
-        <VisualSettings 
-          vDataState={vDataState}
-          setVDataState={setVDataState}
-        /> <br />
-        <Income   adjustments = {adjustments}  setAdjustments={setAdjustments} incomeList={adjustments.income} /> <br />
-        <Expenses  adjustments= {adjustments} setAdjustments={setAdjustments} expenseList={adjustments.expenses} /> 
+            setVDataState={setVDataState}
+          /> <br />
+          <Income   adjustments = {adjustments}  setAdjustments={setAdjustments} incomeList={adjustments.income} /> <br />
+          <Expenses  adjustments= {adjustments} setAdjustments={setAdjustments} expenseList={adjustments.expenses} /> 
         </div>
-      
+      </LocalizationProvider>
     </>
   )
 

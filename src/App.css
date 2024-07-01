@@ -25,12 +25,9 @@
   grid-template-areas:
   "header header header header"
   "graph graph graph graph"
-  "graph graph graph graph"
-  "cBalance cBalance empty expense"
-  "vSettings vSettings empty expense"
-  "vSettings vSettings empty expense"
-  "income income empty expense"
-  "income income empty expense";
+  "cBalance vSettings vSettings vSettings"
+  "income income expense expense"
+  "income income expense expense";
 
   grid-template-columns: 30% 35% 2% 33%;
 
@@ -128,6 +125,12 @@ div.budgetComponent{
   border-style: double;
   padding: 20px;
   margin: 5px;
+
+}
+
+#BudgetVSettings{
+   
+  display: inline-flex;
 
 }
 
