@@ -1,6 +1,5 @@
 
 /* Application Grid Setups */
-
 .applicationTracker{
   
   height: 90%;
@@ -26,8 +25,8 @@
   "header header header header"
   "graph graph graph graph"
   "cBalance vSettings vSettings vSettings"
-  "income income expense expense"
-  "income income expense expense";
+  "button button button button"
+  "transactions transactions transactions transactions";
 
   grid-template-columns: 30% 35% 2% 33%;
 
@@ -130,7 +129,7 @@ div.budgetComponent{
 
 #BudgetVSettings{
    
-  display: inline-flex;
+  display: flex;
 
 }
 

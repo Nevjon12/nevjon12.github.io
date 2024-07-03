@@ -45,9 +45,10 @@ export default function BaseLineModal(props) {
 
 
   return (
+    <div style={{backgroundColor:"unset"}}>
     <Dialog 
         open={modalOpen}
-          
+        
         >
       <DialogTitle>Set New Base Line</DialogTitle>
       <DialogContent>
@@ -66,5 +67,6 @@ export default function BaseLineModal(props) {
         <Button onClick={onSave}>Save</Button>
       </DialogActions>
     </Dialog>
+    </div>
   );
 }

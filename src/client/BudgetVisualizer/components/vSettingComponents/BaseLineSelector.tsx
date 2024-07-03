@@ -1,4 +1,4 @@
-import BaseLineModal from "../modals/BaseLineModal";
+import BaseLineModal from "./vSettingModals/BaseLineModal";
 import { useState } from "react";
 
 
@@ -18,10 +18,12 @@ export default function BaseLineSelector(props){
   return(
 
   <>
-    <BaseLineModal vDataState={vDataState} updateBaseLine={updateBaseLine} modalOpen={modalOpen} changeModal={changeModal} />
+    
+  <BaseLineModal vDataState={vDataState} updateBaseLine={updateBaseLine} modalOpen={modalOpen} changeModal={changeModal} />
+    
   <span>{displayAmount}</span>
   <br /> <br />
-  <button
+  <button style={{flex:1}}
       onClick={()=>{changeModal(!modalOpen)}}
 
     >Set New Base Line</button> <br />

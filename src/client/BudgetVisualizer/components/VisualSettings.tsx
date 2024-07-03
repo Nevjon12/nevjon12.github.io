@@ -2,7 +2,7 @@ import { VisualSettingsProps } from "../interfaces"
 import { useEffect } from "react";
 
 import GraphTypeSelector from "./vSettingComponents/GraphTypeSelector";
-import ViewTimeRange from "./vSettingComponents/ViewTimeRange";
+import ViewTimeRange from "./vSettingComponents/TimeRangeSelector";
 import BaseLineSelector from "./vSettingComponents/BaseLineSelector";
 import GoalSelector from "./vSettingComponents/GoalSelector";
 
@@ -14,7 +14,7 @@ export default function VisualSettings(props : VisualSettingsProps){
   const goalBalance = props.vDataState.goalBalance;
   const updateVSettings = props.setVDataState
 
-  console.log("viewPeriod", currentView)
+  
 
   useEffect(() => {
   
@@ -24,7 +24,7 @@ export default function VisualSettings(props : VisualSettingsProps){
   
   return(
 
-    <div style={{gridArea:"vSettings"}} className="budgetComponent" id="BudgetVSettings">
+    <div style={{gridArea:"vSettings"}} className="budgetComponent" id="BudgetVSettings" >
 
       <GraphTypeSelector currentView={currentView} updateVSettings={updateVSettings} vDataState={vDataState}> Toggle Graph Type </GraphTypeSelector>
       <ViewTimeRange viewPeriod={viewPeriod} updateVSettings={updateVSettings} vDataState={vDataState} />

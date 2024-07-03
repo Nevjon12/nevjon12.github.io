@@ -3,7 +3,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { useState } from "react";
 import dayjs from "dayjs";
 
-export default function ViewTimeRange(props){
+export default function TimeRangeSelector(props){
 
   const vDataState = props.vDataState;
   const updateVSettings = props.updateVSettings;
@@ -14,7 +14,6 @@ export default function ViewTimeRange(props){
   let currentDate = startingDate;
 
   while (currentDate.isBefore(endDate) || currentDate.isSame(endDate, 'day')) {
-    console.log(currentDate.format('MM/DD/YYYY'));
     currentDate = currentDate.add(1, 'day');
   }
  
@@ -23,8 +22,9 @@ export default function ViewTimeRange(props){
 
 
   return (
-    <div>
-    Date Range <br />
+    
+   
+    <div style={{flex:1, display:"flex"}}>
     <DatePicker
       label="Start"
       value={startingDate.toDate()}
@@ -57,5 +57,6 @@ export default function ViewTimeRange(props){
                 }} 
     />
     </div>
+    
   );
 }

@@ -1,4 +1,4 @@
-import GoalModal from "../modals/GoalModal";
+import GoalModal from "./vSettingModals/GoalModal";
 import { useState } from "react";
 
 
@@ -17,7 +17,7 @@ export default function GoalSelector(props){
   <>
     <GoalModal vDataState={vDataState} setNewGoal={setNewGoal} modalOpen={modalOpen} changeModal={changeModal}/>
     <span>{displayAmount}</span>
-    <button
+    <button style={{flex:1}}
       onClick={()=>{changeModal(!modalOpen)}}
 
     >Set New Goal</button> <br />

@@ -2,24 +2,26 @@ import { useState} from "react"
 import GraphContainer from "./components/GraphContainer";
 import CurrentBalance from "./components/CurrentBalance";
 import VisualSettings from "./components/VisualSettings";
-import Income from "./components/Income";
-import Expenses from "./components/Expenses";
 import { GraphData, Transaction } from "./interfaces";
 import { Adjustment } from "./interfaces";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import Transactions from "./components/Transactions";
+
+
+
 
 
 
 export default function BudgetVContainer(){
 
+  const currentlyStoredData = JSON.parse(localStorage.getItem('VData'));
 
+  const [transactions, setTransactions] = useState<Adjustment>({
 
-  const [adjustments, setAdjustments] = useState<Adjustment>({
+      expenses: [],
 
-      expenses: [ {day:"Date1", amount:-5, expense:"Shudder"}, {day:"Date2", amount:-900, expense:"Rent"} ],
-
-      income: [ {day:"Date1", amount:20, expense:"DogWalk"}, {day:"Date3", amount:600, expense:"PayDay"} ],
+      income: [],
 
       totalExpenses: ()=>{return this.calculateTotal(this.expenses)},
 
@@ -35,7 +37,7 @@ export default function BudgetVContainer(){
 
     });
   
-  const currentlyStoredData = JSON.parse(localStorage.getItem('VData'));
+  
 
 
 
@@ -45,12 +47,10 @@ export default function BudgetVContainer(){
     viewPeriod: [undefined,undefined],
     baseLine: 50,
     goalBalance: 100,
+    transactions: transactions
   });
 
-
-
-
-
+  console.log('State after declaring',vDataState)
 
 
 
@@ -59,18 +59,24 @@ export default function BudgetVContainer(){
       
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <div className="budgetVisualizer" >
-          <h1>Budget Visualizer goes here</h1> 
+          <h1>Budget Visualizer goes here</h1>
+
           <GraphContainer  //most of therse props will be replaced once we confirm state is being updated correctly
               vDataState={vDataState}
           /> 
           <br />
-          <CurrentBalance vDataState={vDataState} setVDataState={setVDataState}/> <br />
+
+          <CurrentBalance vDataState={vDataState} setVDataState={setVDataState}/> 
+          <br />
+
           <VisualSettings 
             vDataState={vDataState}
             setVDataState={setVDataState}
-          /> <br />
-          <Income   adjustments = {adjustments}  setAdjustments={setAdjustments} incomeList={adjustments.income} /> <br />
-          <Expenses  adjustments= {adjustments} setAdjustments={setAdjustments} expenseList={adjustments.expenses} /> 
+          /> 
+          <br />
+
+          <Transactions transactions = {transactions} setTransactions= {setTransactions} vDataState={vDataState} setVDataState={setVDataState}/>
+          
         </div>
       </LocalizationProvider>
     </>
