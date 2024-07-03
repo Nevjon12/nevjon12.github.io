@@ -24,7 +24,7 @@ export default function VisualSettings(props : VisualSettingsProps){
   
   return(
 
-    <div style={{gridArea:"vSettings"}} className="budgetComponent" id="BudgetVSettings">
+    <div style={{gridArea:"vSettings"}} className="budgetComponent" id="BudgetVSettings" >
 
       <GraphTypeSelector currentView={currentView} updateVSettings={updateVSettings} vDataState={vDataState}> Toggle Graph Type </GraphTypeSelector>
       <ViewTimeRange viewPeriod={viewPeriod} updateVSettings={updateVSettings} vDataState={vDataState} />

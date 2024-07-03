@@ -23,8 +23,9 @@ export default function ViewTimeRange(props){
 
 
   return (
-    <div>
-    Date Range <br />
+    <>
+   
+    <div style={{flex:2, display:"inline-flex"}}>
     <DatePicker
       label="Start"
       value={startingDate.toDate()}
@@ -57,5 +58,6 @@ export default function ViewTimeRange(props){
                 }} 
     />
     </div>
+    </>
   );
 };

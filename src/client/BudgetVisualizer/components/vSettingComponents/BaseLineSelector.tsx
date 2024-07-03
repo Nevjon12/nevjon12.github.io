@@ -12,7 +12,7 @@ export default function BaseLineSelector(props){
   return(
 
   <>
-    <button
+    <button style={{flex:1}}
       onClick={()=>{
         let currentBaseLine = baseLine;
         currentBaseLine += 50;

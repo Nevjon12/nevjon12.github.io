@@ -2,12 +2,14 @@ import { useState} from "react"
 import GraphContainer from "./components/GraphContainer";
 import CurrentBalance from "./components/CurrentBalance";
 import VisualSettings from "./components/VisualSettings";
-import Income from "./components/Income";
-import Expenses from "./components/Expenses";
 import { GraphData, Transaction } from "./interfaces";
 import { Adjustment } from "./interfaces";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import Transactions from "./components/Transactions";
+
+
+
 
 
 
@@ -15,7 +17,7 @@ export default function BudgetVContainer(){
 
 
 
-  const [adjustments, setAdjustments] = useState<Adjustment>({
+  const [transactions, setTransactions] = useState<Adjustment>({
 
       expenses: [ {day:"Date1", amount:-5, expense:"Shudder"}, {day:"Date2", amount:-900, expense:"Rent"} ],
 
@@ -69,8 +71,8 @@ export default function BudgetVContainer(){
             vDataState={vDataState}
             setVDataState={setVDataState}
           /> <br />
-          <Income   adjustments = {adjustments}  setAdjustments={setAdjustments} incomeList={adjustments.income} /> <br />
-          <Expenses  adjustments= {adjustments} setAdjustments={setAdjustments} expenseList={adjustments.expenses} /> 
+          <Transactions transactions = {transactions} />
+          
         </div>
       </LocalizationProvider>
     </>

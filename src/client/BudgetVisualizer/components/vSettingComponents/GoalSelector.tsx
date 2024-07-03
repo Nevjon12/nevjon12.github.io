@@ -11,7 +11,7 @@ export default function GoalSelector(props){
   return(
 
   <>
-    <button
+    <button style={{flex:1}}
       onClick={()=>{
           let currentGoal = goalBalance;
           currentGoal += 100;
