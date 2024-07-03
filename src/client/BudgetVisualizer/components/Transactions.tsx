@@ -30,9 +30,9 @@ export default function Transactions(props){
   return(
 
     <>
-    <NewTransactionModal changeModal={changeModal} modalOpen={modalOpen} />
+    <NewTransactionModal changeModal={changeModal} modalOpen={modalOpen} zIndex={1000} />
     <button style={{gridArea:"button"}}   onClick={()=>{changeModal(!modalOpen)}} >Add Transaction</button>
-    <div style={{gridArea:"transactions", display:"flex", width:"100%"}}>
+    <div style={{gridArea:"transactions", display:"flex"}}>
   
       <Income   incomeList={transactions.income} />
       

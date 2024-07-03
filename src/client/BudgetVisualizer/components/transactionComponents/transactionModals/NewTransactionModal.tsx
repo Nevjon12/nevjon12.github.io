@@ -1,10 +1,6 @@
-import { MenuItem, Select } from '@mui/material';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import TextField from '@mui/material/TextField';
+import {Box, Modal} from '@mui/material';
+
+
 // import { useEffect } from 'react';
 
 
@@ -22,6 +18,8 @@ export default function NewTransactionModal(props) {
 
   const onCancel = ()=>{changeModal(!modalOpen)};
 
+
+
   //   useEffect(() => {
   //     if (!modalOpen) {
 
@@ -34,49 +32,49 @@ export default function NewTransactionModal(props) {
 
 
   return (
-    <Dialog 
-        open={modalOpen}
-        style={{backgroundColor: 'rgba(0, 0, 0, 0.5)' }}  
-        >
-      <DialogTitle>Enter New Transaction</DialogTitle>
-      <DialogContent>
+    <Modal 
+      hideBackdrop={true}
+      open={modalOpen}
+      
+    >
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 400,
+          border: '2px solid #000',
+          boxShadow: 24,
+          p: 4,
+        }}
+      >
+      <h2>Add a new transaction</h2>
+      <form>
         
-        <Select >
-          <MenuItem value={'income'}>Income</MenuItem>
-          <MenuItem value={'expense'} >Expense</MenuItem>
-        </Select>
-        <br />
+        <input placeholder='Amount of Transaction' type='number' ></input>
+          <br />
+        <input  placeholder='Reason for Transaction' type='text' ></input>
+          <br />
+        <select  >
+          <option value="" disabled selected>Is this an Expense or new Income?</option>
+          <option>Expense</option>
+          <option>Income</option>
+        </select>
+           <br />
+        <select>
+          <option value="" disabled selected>How frequent is transaction?</option>
+          <option>Weekly</option>
+          <option>Bi-Weekly</option>
+          <option>Monthly</option>
+        </select>
+          <br />
+        <button onClick={onSave}>Save</button>
+        <button onClick={onCancel}>Cancel</button>
 
-        <TextField
-          autoFocus
-          margin="dense"
-          id="amount"
-          label="Amount"
-          type="number"
-          variant="standard"
-          onChange={()=>{}}
-        />
-        <br />
-        <TextField
-          autoFocus
-          margin="dense"
-          id="source"
-          label="Source"
-          type="text"
-          variant="standard"
-          onChange={()=>{}}
-        />
-        <br />
-        <Select>
-          <MenuItem value={'weekly'}>Weekly</MenuItem>
-          <MenuItem value={'bi-weekly'} >Bi-weekly</MenuItem>
-          <MenuItem value={'monthly'} >Monthly</MenuItem>
-        </Select>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onCancel}>Cancel</Button>
-        <Button onClick={onSave}>Save</Button>
-      </DialogActions>
-    </Dialog>
+      </form>
+      
+      </Box>
+    </Modal>
   );
 }
