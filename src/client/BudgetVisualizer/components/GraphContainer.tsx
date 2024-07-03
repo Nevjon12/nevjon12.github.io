@@ -1,20 +1,19 @@
 import { GraphProps } from "../interfaces";
+import LineGraph from "./graphComponents/LineGraphV";
+
+
 
 export default function GraphContainer(props: GraphProps){
 
+
   const vDataState = props.vDataState;
-  const graphType = vDataState.currentView
+
 
 
   return(
 
-    <div style={{gridArea:"graph"} } className="budgetComponent" >
-      Graph Container <br/>
-      <div className="graph">
-      
-        Imagine this is a {graphType}<br /> <br />
-
-      </div>
+    <div style={{gridArea:"graph", maxHeight:"100%%", maxWidth:"150%", display:'contents'} }>
+      <LineGraph />
     </div>
   );
 

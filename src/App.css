@@ -24,6 +24,7 @@
   grid-template-areas:
   "header header header header"
   "graph graph graph graph"
+  "graph graph graph graph"
   "cBalance vSettings vSettings vSettings"
   "button button button button"
   "transactions transactions transactions transactions";
