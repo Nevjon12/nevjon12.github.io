@@ -18,9 +18,9 @@ export default function BaseLineSelector(props){
   return(
 
   <>
-    <div style={{backgroundColor:"unset"}}>
-    <BaseLineModal vDataState={vDataState} updateBaseLine={updateBaseLine} modalOpen={modalOpen} changeModal={changeModal} />
-    </div>
+    
+  <BaseLineModal vDataState={vDataState} updateBaseLine={updateBaseLine} modalOpen={modalOpen} changeModal={changeModal} />
+    
   <span>{displayAmount}</span>
   <br /> <br />
   <button style={{flex:1}}

@@ -1,37 +1,29 @@
 import {Box, Modal} from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers';
-import dayjs from 'dayjs';
 
-// import { useEffect } from 'react';
 
 
 
 
 export default function NewTransactionModal(props) {
 
-  const {modalOpen, changeModal} = props
-  const {transactions, setTransactions} = props
+  const {modalOpen, changeModal} = props;
+  const {vDataState, setVDataState} = props;
+  const newTransactions = vDataState.transactions;
 
   const onSave = (data)=>{ 
         changeModal(!modalOpen)
-        const currentExpenses = transactions.expenses;
-        const currentIncome = transactions.income;
+
         if(data.type === 'income'){
-          currentIncome.push(data)
-          setTransactions(
-            {...transactions,
-              income : currentIncome
-            })
+          newTransactions.income.push(data)
         }else{
-          currentExpenses.push(data)
-          setTransactions(
-            {...transactions,
-              expenses : currentExpenses
-            })
+          newTransactions.expenses.push(data)            
         }
-
-        console.log('expense',currentExpenses, 'income',currentIncome)
-
+        
+        console.log('newTransactions', newTransactions)
+        setVDataState({
+          ...vDataState,
+          transactions : newTransactions
+        })
       };
 
 
@@ -39,48 +31,18 @@ export default function NewTransactionModal(props) {
 
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
-    const formData = new FormData(event.target); // event.target is the form
+    event.preventDefault(); 
+    const formData = new FormData(event.target);
     const data = {};
     formData.forEach((value, key) => {
-      data[key] = value; // Populate data object with form values
+      data[key] = value;
     });
-    console.log(data); // Here you can see the collected form data
+
    
     onSave(data);
 
   };
 
-  // const onSubmit = (formData)=>{
-  //   //initialize a copy of the current transactions to update
-  //   const updatedTransactions = transactions;
-  //   //initialize an object to save our info
-  //   const newTransaction = {
-  //     date: Number,
-  //     amount: Number,
-  //     reason: String,
-  //     type: String,
-  //     frequency: String
-  //   };
-  //   //input the form data into the object
-  //   newTransaction.date = formData.date;
-  //   newTransaction.amount = formData.amount;
-  //   newTransaction.reason = formData.reason
-  //   newTransaction.type = formData.type;
-  //   newTransaction.frequency = formData.source;
-
-  //   //push the new Transaction into the correct  transaction Type
-
-
-  // }
-
-  //   useEffect(() => {
-  //     if (!modalOpen) {
-
-  //       localStorage.setItem('VData', JSON.stringify(vDataState))
-  //     }
-
-  // }, [modalOpen]);
 
 
 
@@ -106,21 +68,21 @@ export default function NewTransactionModal(props) {
       <h2>Add a new transaction</h2>
       <form onSubmit={handleSubmit} >
         <br />
-        <DatePicker
+        <input type='date'
           name='date'
-          label="Transaction Date"                
+          required             
         />
-        <input placeholder='Amount of Transaction' type='number' name='amount'></input>
+        <input placeholder='Amount of Transaction' type='number' name='amount' required ></input>
           <br />
-        <input  placeholder='Reason for Transaction' type='text' name='reason' ></input>
+        <input  placeholder='Reason for Transaction' type='text' name='reason' required ></input>
           <br />
-        <select  name='type'>
+        <select  name='type' required >
           <option value="" disabled selected>Is this an Expense or new Income?</option>
           <option value={'expense'}>Expense</option>
           <option value={'income'} >Income</option>
         </select>
            <br />
-        <select name='frequency'>
+        <select name='frequency' required >
           <option value="" disabled selected>How frequent is transaction?</option>
           <option value={'weekly'} >Weekly</option>
           <option value={'bi-weekly'} >Bi-Weekly</option>

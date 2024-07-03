@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import Expenses from "./transactionComponents/Expenses";
 import Income from "./transactionComponents/Income";
 import NewTransactionModal from "./transactionComponents/transactionModals/NewTransactionModal";
@@ -6,36 +6,17 @@ import NewTransactionModal from "./transactionComponents/transactionModals/NewTr
 
 export default function Transactions(props){
 
-  const transactions = props.transactions;
-  const setTransactions = props.setTransactions;
   const {vDataState, setVDataState} = props;
+  const transactions = vDataState.transactions; 
+  
 
   const [modalOpen, changeModal] = useState(false);
 
 
-  //SET UP USEEFFECT TO UPDATE LOCALSTORAGE AND VDATA
-    useEffect(()=>{})
-
-  /*
-    What does this do?:
-      -it adds a new transaction
-    How?:
-      - uses a modal with a form containing 4 options to collect the information: {
-        Type<Dropdown>: [Expense, Income],
-        Amount<number>: XX.XX,
-        Source<string>: Rent,
-        Frequency<Dropdown>: [Weekly, Bi-Weekly, Monthly],
-      }
-      - 
-
-
-
-  */
-
   return(
 
     <>
-    <NewTransactionModal changeModal={changeModal} modalOpen={modalOpen} transactions={transactions} setTransactions={setTransactions}  />
+    <NewTransactionModal changeModal={changeModal} modalOpen={modalOpen} transactions={transactions} vDataState={vDataState} setVDataState={setVDataState}/>
     <button style={{gridArea:"button"}}   onClick={()=>{changeModal(!modalOpen)}} >Add Transaction</button>
     <div style={{gridArea:"transactions", display:"flex"}}>
   

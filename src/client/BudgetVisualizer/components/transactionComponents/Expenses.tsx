@@ -1,7 +1,7 @@
 
-import { ExpensesProps } from "../interfaces";
+// import { ExpensesProps } from "../interfaces";
 
-export default function Expenses(props : ExpensesProps){
+export default function Expenses(props){
 
 
   const expenseList = props.expenseList;
@@ -15,7 +15,12 @@ export default function Expenses(props : ExpensesProps){
 
     <>Total expenses: </> <br /><br />
     {expenseList.map((exp)=>{
-      return <div>Day:{exp.day} Amnt:{exp.amount} Exp:{exp.expense}<br /> <br /></div>
+      return <div>{` Day: ${exp.date}
+                    Amnt: ${exp.amount}
+                    Source: ${exp.reason}
+                    Frequency: ${exp.frequency}
+              
+                   `}<br /> <br /></div>
     })}
     </div>
   );

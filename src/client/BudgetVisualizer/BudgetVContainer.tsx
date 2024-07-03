@@ -15,7 +15,7 @@ import Transactions from "./components/Transactions";
 
 export default function BudgetVContainer(){
 
-
+  const currentlyStoredData = JSON.parse(localStorage.getItem('VData'));
 
   const [transactions, setTransactions] = useState<Adjustment>({
 
@@ -37,7 +37,7 @@ export default function BudgetVContainer(){
 
     });
   
-  const currentlyStoredData = JSON.parse(localStorage.getItem('VData'));
+  
 
 
 
@@ -50,7 +50,7 @@ export default function BudgetVContainer(){
     transactions: transactions
   });
 
-
+  console.log('State after declaring',vDataState)
 
 
 
@@ -75,7 +75,7 @@ export default function BudgetVContainer(){
           /> 
           <br />
 
-          <Transactions transactions = {transactions} setTransactions= {setTransactions}/>
+          <Transactions transactions = {transactions} setTransactions= {setTransactions} vDataState={vDataState} setVDataState={setVDataState}/>
           
         </div>
       </LocalizationProvider>
