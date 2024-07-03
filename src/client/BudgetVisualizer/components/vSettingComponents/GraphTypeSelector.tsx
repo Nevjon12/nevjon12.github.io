@@ -7,6 +7,7 @@ export default function GraphTypeSelector(props){
 
   return(
     <>
+    <span>{currentView}</span>
     <button style={{flex:1}}
         onClick={()=>{
           if(currentView === "Line Graph"){
