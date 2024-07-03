@@ -19,9 +19,9 @@ export default function BudgetVContainer(){
 
   const [transactions, setTransactions] = useState<Adjustment>({
 
-      expenses: [ {day:"Date1", amount:-5, expense:"Shudder"}, {day:"Date2", amount:-900, expense:"Rent"} ],
+      expenses: [],
 
-      income: [ {day:"Date1", amount:20, expense:"DogWalk"}, {day:"Date3", amount:600, expense:"PayDay"} ],
+      income: [],
 
       totalExpenses: ()=>{return this.calculateTotal(this.expenses)},
 
