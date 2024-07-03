@@ -1,6 +1,6 @@
 import { CurrentBalanceProps } from "../interfaces";
 import { useState} from "react";
-import CurrentBalanceModal from "./modals/CurrentBalanceModal";
+import CurrentBalanceModal from "./vSettingComponents/vSettingModals/CurrentBalanceModal";
 
 export default function CurrentBalance(props : CurrentBalanceProps){
   const vDataState = props.vDataState;

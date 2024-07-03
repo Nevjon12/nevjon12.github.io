@@ -1,7 +1,10 @@
+
+
+
 div#root{
 
   width:unset;
-  background-color:#36454F;
+  background-color: #36454F;
 
 }
 
@@ -35,7 +38,8 @@ button{
 
 
   border-radius: 5px;
-  margin: 5px
+  margin: 5px;
+  
 
 
 

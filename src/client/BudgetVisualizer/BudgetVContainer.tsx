@@ -47,10 +47,8 @@ export default function BudgetVContainer(){
     viewPeriod: [undefined,undefined],
     baseLine: 50,
     goalBalance: 100,
+    transactions: transactions
   });
-
-
-
 
 
 
@@ -61,17 +59,23 @@ export default function BudgetVContainer(){
       
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <div className="budgetVisualizer" >
-          <h1>Budget Visualizer goes here</h1> 
+          <h1>Budget Visualizer goes here</h1>
+
           <GraphContainer  //most of therse props will be replaced once we confirm state is being updated correctly
               vDataState={vDataState}
           /> 
           <br />
-          <CurrentBalance vDataState={vDataState} setVDataState={setVDataState}/> <br />
+
+          <CurrentBalance vDataState={vDataState} setVDataState={setVDataState}/> 
+          <br />
+
           <VisualSettings 
             vDataState={vDataState}
             setVDataState={setVDataState}
-          /> <br />
-          <Transactions transactions = {transactions} />
+          /> 
+          <br />
+
+          <Transactions transactions = {transactions} setTransactions= {setTransactions}/>
           
         </div>
       </LocalizationProvider>

@@ -1,4 +1,4 @@
-import GoalModal from "../modals/GoalModal";
+import GoalModal from "./vSettingModals/GoalModal";
 import { useState } from "react";
 
 
