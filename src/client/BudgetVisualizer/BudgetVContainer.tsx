@@ -42,11 +42,11 @@ export default function BudgetVContainer(){
 
 
   const [vDataState , setVDataState] = useState<GraphData>(currentlyStoredData || {
-    currentBalance: parseFloat(parseFloat("1.00").toFixed(2)),
+    currentBalance: parseFloat(parseFloat("0.00").toFixed(2)),
     currentView: "Line Graph",
     viewPeriod: [undefined,undefined],
-    baseLine: 50,
-    goalBalance: 100,
+    baseLine: 0,
+    goalBalance: 0,
     transactions: transactions
   });
 
@@ -56,12 +56,11 @@ export default function BudgetVContainer(){
 
   return(
     <>
-      
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <div className="budgetVisualizer" >
-          <h1>Budget Visualizer goes here</h1>
+          <h1>Budget Visualizer</h1>
 
-          <GraphContainer  //most of therse props will be replaced once we confirm state is being updated correctly
+          <GraphContainer  
               vDataState={vDataState}
           /> 
           <br />

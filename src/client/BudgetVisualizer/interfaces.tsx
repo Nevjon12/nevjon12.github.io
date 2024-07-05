@@ -23,6 +23,7 @@ export interface GraphData {
     viewPeriod : number;
     baseLine : number;
     goalBalance : number;
+    transactions : Adjustment
   
 }
 

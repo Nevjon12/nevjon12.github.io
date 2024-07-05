@@ -14,9 +14,9 @@ export default function NewTransactionModal(props) {
         changeModal(!modalOpen)
 
         if(data.type === 'income'){
-          newTransactions.income.push(data)
+          newTransactions.income.push(data);
         }else{
-          newTransactions.expenses.push(data)            
+          newTransactions.expenses.push(data);                     
         }
         
         console.log('newTransactions', newTransactions)
@@ -37,7 +37,6 @@ export default function NewTransactionModal(props) {
     formData.forEach((value, key) => {
       data[key] = value;
     });
-
    
     onSave(data);
 
