@@ -1,17 +1,17 @@
-import { Bar } from "react-chartjs-2";
+// import { Bar } from "react-chartjs-2";
 
 
 
-export default function BarGraph(props){
+// export default function BarGraph(props){
 
 
 
 
-  return(
+//   return(
 
-    <>Bar</>
+//     <>Bar</>
 
-  );
+//   );
 
 
-}
+// }

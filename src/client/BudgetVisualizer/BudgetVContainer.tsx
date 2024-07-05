@@ -58,9 +58,9 @@ export default function BudgetVContainer(){
     <>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <div className="budgetVisualizer" >
-          <h1>Budget Visualizer goes here</h1>
+          <h1>Budget Visualizer</h1>
 
-          <GraphContainer  //most of therse props will be replaced once we confirm state is being updated correctly
+          <GraphContainer  
               vDataState={vDataState}
           /> 
           <br />

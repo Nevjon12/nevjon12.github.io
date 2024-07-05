@@ -8,9 +8,9 @@ import {
   Title,
   Tooltip,
   Legend } from "chart.js"
-import { Data } from "./Data";
 
-export default function LineGraph(){
+
+export default function LineGraph(props){
 
   ChartJS.register(  
     CategoryScale,
@@ -22,6 +22,7 @@ export default function LineGraph(){
     Legend
   );
 
+  const Data = props.Data
 
   const options = {
     
