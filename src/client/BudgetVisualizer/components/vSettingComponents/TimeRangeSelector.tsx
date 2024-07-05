@@ -1,20 +1,34 @@
 
-import { DatePicker } from "@mui/x-date-pickers";
 import { useState } from "react";
-import dayjs from "dayjs";
+
 
 export default function TimeRangeSelector(props){
 
   const vDataState = props.vDataState;
   const updateVSettings = props.updateVSettings;
   
-  const [startingDate, setStartingDate] = useState(dayjs())
-  const [endDate, setEndDate] = useState(dayjs())
+  
+  const [startingDate, setStartingDate] = useState<FormDataEntryValue>('')
+  const [endDate, setEndDate] = useState<FormDataEntryValue>('')
 
-  let currentDate = startingDate;
+  function onSubmit(event){
+    event.preventDefault();
 
-  while (currentDate.isBefore(endDate) || currentDate.isSame(endDate, 'day')) {
-    currentDate = currentDate.add(1, 'day');
+    
+
+    const formData = new FormData(event.target);
+        
+    setStartingDate(formData.get('startDate'));
+    setEndDate(formData.get('endDate'));
+
+    const timeRange = [];
+    timeRange.push(startingDate, endDate)
+    console.log(timeRange)
+    updateVSettings({
+      ...vDataState,
+      viewPeriod : timeRange
+    })
+
   }
  
 
@@ -22,41 +36,18 @@ export default function TimeRangeSelector(props){
 
 
   return (
-    
-   
-    <div style={{flex:1, display:"flex"}}>
-    <DatePicker
-      label="Start"
-      value={startingDate.toDate()}
-      onChange={(newValue) => {
-                setStartingDate(dayjs(newValue));
-                setEndDate(dayjs(newValue))
-                const newViewPeriod = [newValue, endDate]
-                updateVSettings({
-                  ...vDataState,
-                  viewPeriod: newViewPeriod
-                })
-                
-                }}
-     />
-    <DatePicker
-      label="End" 
-      value={endDate.toDate()} // Convert dayjs object to Date for DatePicker
-      onChange={(newValue) => {
-                const newEndDate = dayjs(newValue);
-                if(newEndDate.isBefore(startingDate, 'day')) {
-                alert('End date must be after the start date.')
-                
-                }else {
-                setEndDate(dayjs(newValue))
-                const newViewPeriod = [startingDate, newValue]
-                updateVSettings({
-                  ...vDataState,
-                  viewPeriod: newViewPeriod
-                })}
-                }} 
-    />
-    </div>
+    <>
+    <form onSubmit={onSubmit} >
+
+      <input type="date" name="startDate" required />
+      <input  type="date"  name="endDate" required />
+
+      <button type="submit" >Set Time Range</button>
+
+
+    </form>
+    </>
+
     
   );
 }

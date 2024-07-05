@@ -25,7 +25,27 @@ export default function LineGraph(props){
   const Data = props.Data
 
   const options = {
-    
+    plugins: {
+      title: {
+        display: true,
+        text: "Running Balances for Selected Period"
+      },
+      legend: {
+          display: false
+        }
+    },
+
+    scales: {
+      x: {
+        ticks: {
+          display:false  
+        }
+      },
+      y: {
+        min: 0
+      }
+
+    }
   };
 
 
@@ -34,7 +54,6 @@ export default function LineGraph(props){
 return(
   
     <div className="graph">
-    Graph
     <Line options={options} data={Data}/>
     </div>
 )
