@@ -8,6 +8,9 @@ As of now you will find the following:
 
 # Job Application Tracker:
 
+![image](https://github.com/Nevjon12/nevjon12.github.io/assets/105249362/bd08a139-b32a-4c5a-aa5a-a38ad6a60b00)
+
+
 With this straightforward app you'll be able to keep track and take notes of the status of all your job applications. I ended up putting it together because i got kind of tired of spreadsheets hehe.
 
   How Fix?
@@ -18,6 +21,9 @@ With this straightforward app you'll be able to keep track and take notes of the
 
 
 # Savings Planner (IN PROGRESS)
+
+![photo1720160713](https://github.com/Nevjon12/nevjon12.github.io/assets/105249362/2a61b47d-babd-4fd2-ac18-2c7b43f01023) 
+
 
 Have you ever gotten tired of having to figure out all the math needed to see how much you'd need to save up in time for that big vacation? Or have you ever just needed figure out how much you need to save just to stay afloat? I know I have.
 
