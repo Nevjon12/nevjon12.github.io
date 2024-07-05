@@ -59,10 +59,11 @@ export default function BudgetVContainer(){
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <div className="budgetVisualizer" >
           <h1>Budget Visualizer</h1>
-
+          <div style={{gridArea:"graph"}} >
           <GraphContainer  
               vDataState={vDataState}
           /> 
+          </div>
           <br />
 
           <CurrentBalance vDataState={vDataState} setVDataState={setVDataState}/> 

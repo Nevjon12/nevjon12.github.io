@@ -10,10 +10,12 @@ export default function GraphContainer(props: GraphProps){
   const expenses = vDataState.transactions.expenses;
   const income = vDataState.transactions.income;
   const currentBalance = vDataState.currentBalance;
+  const viewPeriod = vDataState.viewPeriod;
+  
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   const collectDataForGraph = (income, expenses)=> {
    
-
 
     const newData= {};
 
@@ -37,14 +39,13 @@ export default function GraphContainer(props: GraphProps){
         newData[transaction.date] = dateDataArray;
       }
     }
-
+    
     return(newData)
   }
 
-  const collectedData = collectDataForGraph(income, expenses);
 
   
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const sumUpAllDailyBalances = (balance, dataCollected)=>{
     const orderedTransactions = Object.entries(dataCollected).sort()
     
@@ -64,19 +65,74 @@ export default function GraphContainer(props: GraphProps){
 
   }
 
-  const processedData = sumUpAllDailyBalances(currentBalance, collectedData);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   const setViewPeriodTemplate = (period, balance)=>{
+
+    const startDate = new Date(period[0]);
+    const endDate = new Date(period[1]);
+    const dateRangeTemplate = {};
+    
+    for(let date= new Date(startDate); date <= endDate; date.setDate(date.getDate() + 1)){
+
+      dateRangeTemplate[date.toISOString().split('T')[0]] = balance
+
+    }
+
+    return dateRangeTemplate
+  }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+  const finalizeDataVisualization = (currentBalance, summedUpBalances, periodTemplate)=>{
+
+    const finalizedData = {}
+
+    let runningBalance = currentBalance;
+    const balanceChanges = summedUpBalances;
+    const balanceChangeDates = Object.keys(balanceChanges)
+    const periodTable = Object.keys(periodTemplate);
+
+    for (let i=0; i<periodTable.length; i++){
+
+      if(!balanceChangeDates.includes(periodTable[i])){
+        finalizedData[periodTable[i]] = runningBalance
+      } else {
+        runningBalance = balanceChanges[periodTable[i]];
+        finalizedData[periodTable[i]] = runningBalance;
+      }
+
+    }
+
+    return(finalizedData)
+
+  }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Full process:
+
+  const collectedData = collectDataForGraph(income, expenses);
+  const summedUpBalances = sumUpAllDailyBalances(currentBalance, collectedData);
+  const periodTemplate = setViewPeriodTemplate(viewPeriod, currentBalance);
+
+  const graphData = finalizeDataVisualization(currentBalance, summedUpBalances, periodTemplate)
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 
 
   const Data={
 
-    labels : Object.keys(processedData), //Object.keys(newData.runningBalance)
+    labels : Object.keys(graphData), //Object.keys(newData.runningBalance)
 
     datasets: [
       {
         label:"Counts per year",
-        data: Object.values(processedData) //Object.values(newData.runningBalance)
+        data: Object.values(graphData) //Object.values(newData.runningBalance)
       }
     ]
   };
@@ -85,7 +141,7 @@ export default function GraphContainer(props: GraphProps){
 
   return(
 
-    <div style={{gridArea:"graph", maxHeight:"100%%", maxWidth:"150%", display:'contents'} }>
+    <div>
       <LineGraph Data={Data}/>
     </div>
   );
