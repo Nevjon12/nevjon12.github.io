@@ -20,10 +20,10 @@ export default function Transactions(props){
     <button style={{gridArea:"button"}}   onClick={()=>{changeModal(!modalOpen)}} >Add Transaction</button>
     <div style={{gridArea:"transactions", display:"flex"}}>
   
-      <Income   incomeList={transactions.income} />
+      <Income   incomeList={transactions.income} total={transactions} />
       
       
-      <Expenses expenseList={transactions.expenses} /> 
+      <Expenses expenseList={transactions.expenses} total={transactions} /> 
       
     </div>
     </>

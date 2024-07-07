@@ -1,5 +1,6 @@
 import { GraphProps } from "../interfaces";
 import LineGraph from "./graphComponents/LineGraphV";
+import BarGraph from "./graphComponents/BarGraphV";
 
 
 
@@ -11,6 +12,7 @@ export default function GraphContainer(props: GraphProps){
   const income = vDataState.transactions.income;
   const currentBalance = vDataState.currentBalance;
   const viewPeriod = vDataState.viewPeriod;
+  const currentView = vDataState.currentView;
   
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -142,7 +144,9 @@ export default function GraphContainer(props: GraphProps){
   return(
 
     <div>
-      <LineGraph Data={Data}/>
+      
+      {(currentView === 'Line Graph') ? <LineGraph Data={Data}/> : <BarGraph Data={Data} />}
+
     </div>
   );
 

@@ -5,7 +5,7 @@ export default function Expenses(props){
 
 
   const expenseList = props.expenseList;
-
+  
 
 
 
