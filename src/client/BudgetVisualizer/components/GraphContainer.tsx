@@ -15,7 +15,72 @@ export default function GraphContainer(props: GraphProps){
   const currentView = vDataState.currentView;
   
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//LOGIC FOR DATE RECURRENCE
 
+  function addTransactionAWeekLater(newData, originalDate, amount) {
+
+
+  const dateParts = originalDate.split('-');
+  const startYear = parseInt(dateParts[0], 10);
+  const startMonth = parseInt(dateParts[1], 10) - 1; // Months are 0-indexed in JavaScript Date
+  const startDay = parseInt(dateParts[2], 10);
+  const date = new Date(startYear, startMonth, startDay);
+
+
+  for(let i=0; i<5; i++){
+
+  // Step 2: Add 7 days
+  date.setDate(date.getDate() + 7);
+
+  // Step 3: Format the new date
+  const newDate = date.toISOString().split('T')[0];
+
+  // Step 4: Add the new entry
+  if (!newData[newDate]) {
+    newData[newDate] = amount;
+  } else {
+    newData[newDate].push(amount);
+  }
+  }
+  console.log(newData)
+}
+
+  const collectDataForGraphTest = (income, expenses)=> {
+   
+
+    const newData= {};
+
+
+    for(const transaction of income){
+      if(!newData[transaction.date]){
+      addTransactionAWeekLater(newData, transaction.date, transaction.amount)
+      } else {
+        const dateDataArray = newData[transaction.date];
+        dateDataArray.push(Number(transaction.amount))
+        newData[transaction.date] = dateDataArray;
+      }
+    }
+    
+    for(const transaction of expenses){
+      if(!newData[transaction.date]){
+      newData[transaction.date] = [-[transaction.amount]];
+      } else {
+        const dateDataArray = newData[transaction.date];
+        dateDataArray.push(-transaction.amount)
+        newData[transaction.date] = dateDataArray;
+      }
+    }
+    return(newData)
+  }
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const collectDataForGraph = (income, expenses)=> {
    
 
@@ -114,7 +179,8 @@ export default function GraphContainer(props: GraphProps){
 
 //Full process:
 
-  const collectedData = collectDataForGraph(income, expenses);
+  const collectedData = collectDataForGraphTest(income, expenses, viewPeriod);
+  // const collectedData = collectDataForGraph(income, expenses)
   const summedUpBalances = sumUpAllDailyBalances(currentBalance, collectedData);
   const periodTemplate = setViewPeriodTemplate(viewPeriod, currentBalance);
 
