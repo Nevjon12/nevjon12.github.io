@@ -15,7 +15,9 @@ export default function Expenses(props){
 
     <>Total expenses: </> <br /><br />
     {expenseList.map((exp)=>{
-      return <div>{` Day: ${exp.date}
+      const day = new Date(exp.date).toLocaleDateString()
+
+      return <div>{` Day: ${day}
                     Amnt: ${exp.amount}
                     Source: ${exp.reason}
                     Frequency: ${exp.frequency}

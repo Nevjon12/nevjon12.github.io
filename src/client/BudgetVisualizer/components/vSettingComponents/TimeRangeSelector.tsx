@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 export default function TimeRangeSelector(props){
@@ -11,10 +11,10 @@ export default function TimeRangeSelector(props){
   const [startingDate, setStartingDate] = useState<FormDataEntryValue>('')
   const [endDate, setEndDate] = useState<FormDataEntryValue>('')
 
+
   function onSubmit(event){
     event.preventDefault();
 
-    
 
     const formData = new FormData(event.target);
         

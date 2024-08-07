@@ -14,107 +14,102 @@ export default function GraphContainer(props: GraphProps){
   const viewPeriod = vDataState.viewPeriod;
   const currentView = vDataState.currentView;
   
+
+
+  const transactionsWithinPeriod = (income, expenses, viewPeriod) => {
+
+    function addPeriodToDate(date, period) {
+      const newDate = new Date(date);
+
+      switch (period) {
+        case 'weekly':
+          newDate.setDate(newDate.getDate() + 7);
+          break;
+        case 'bi-weekly':
+          newDate.setDate(newDate.getDate() + 14);
+          break;
+        case 'monthly':
+          newDate.setMonth(newDate.getMonth() + 1);
+          break;
+        default:
+          throw new Error('Invalid period specified');
+      }
+
+      return newDate;
+    }
+
+    const fullIncome = income;
+    const recurrences = [];
+    const fullExpenses = expenses;
+    const endOfPeriod = new Date(viewPeriod[1]);
+    
+    for (const transaction of fullIncome){
+      const newTransaction = {...transaction}; //making a copy of the current transaction
+      let cDate = new Date(newTransaction.date) ; //storing the date currently stored in said transaction
+      const frequency = newTransaction.frequency; //storing the frequency of the current transaction
+    
+
+      
+      while(cDate < endOfPeriod){
+        cDate = new Date(addPeriodToDate(cDate, frequency))
+        recurrences.push({...newTransaction, date:cDate})
+      }
+    }
+  
+        for (const transaction of fullExpenses){
+      const newTransaction = {...transaction};
+      let cDate = new Date(newTransaction.date) ; 
+      const frequency = newTransaction.frequency; 
+      
+      while(cDate < endOfPeriod){
+        cDate = new Date(addPeriodToDate(cDate, frequency))
+        recurrences.push({...newTransaction, date:cDate})
+      }
+    }
+
+
+    const allData = [...fullIncome, ...recurrences];
+    
+    return (allData)
+  };
+
+  
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//LOGIC FOR DATE RECURRENCE
 
-  function addTransactionAWeekLater(newData, originalDate, amount) {
-
-
-  const dateParts = originalDate.split('-');
-  const startYear = parseInt(dateParts[0], 10);
-  const startMonth = parseInt(dateParts[1], 10) - 1; // Months are 0-indexed in JavaScript Date
-  const startDay = parseInt(dateParts[2], 10);
-  const date = new Date(startYear, startMonth, startDay);
-
-
-  for(let i=0; i<5; i++){
-
-  // Step 2: Add 7 days
-  date.setDate(date.getDate() + 7);
-
-  // Step 3: Format the new date
-  const newDate = date.toISOString().split('T')[0];
-
-  // Step 4: Add the new entry
-  if (!newData[newDate]) {
-    newData[newDate] = amount;
-  } else {
-    newData[newDate].push(amount);
-  }
-  }
-  console.log(newData)
-}
-
-  const collectDataForGraphTest = (income, expenses)=> {
-   
-
+    const collectDataForGraphTest = (data)=> {
+    
     const newData= {};
 
 
-    for(const transaction of income){
-      if(!newData[transaction.date]){
-      addTransactionAWeekLater(newData, transaction.date, transaction.amount)
-      } else {
-        const dateDataArray = newData[transaction.date];
-        dateDataArray.push(Number(transaction.amount))
-        newData[transaction.date] = dateDataArray;
+    for(const transaction of data){
+      if(transaction.type === 'income'){
+        if(!newData[transaction.date]){
+          newData[transaction.date] = [Number(transaction.amount)];
+        } else {
+          const dateDataArray = newData[transaction.date];
+          dateDataArray.push(Number(transaction.amount))
+          newData[transaction.date] = dateDataArray;
+        }
       }
-    }
-    
-    for(const transaction of expenses){
-      if(!newData[transaction.date]){
-      newData[transaction.date] = [-[transaction.amount]];
-      } else {
-        const dateDataArray = newData[transaction.date];
-        dateDataArray.push(-transaction.amount)
-        newData[transaction.date] = dateDataArray;
-      }
-    }
-    return(newData)
-  }
 
-
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  const collectDataForGraph = (income, expenses)=> {
-   
-
-    const newData= {};
-
-
-    for(const transaction of income){
-      if(!newData[transaction.date]){
-      newData[transaction.date] = [Number(transaction.amount)];
-      } else {
-        const dateDataArray = newData[transaction.date];
-        dateDataArray.push(Number(transaction.amount))
-        newData[transaction.date] = dateDataArray;
-      }
-    }
-    
-    for(const transaction of expenses){
-      if(!newData[transaction.date]){
-      newData[transaction.date] = [-[transaction.amount]];
-      } else {
-        const dateDataArray = newData[transaction.date];
-        dateDataArray.push(-transaction.amount)
-        newData[transaction.date] = dateDataArray;
+      if(transaction.type === 'expense'){        
+        if(!newData[transaction.date]){
+          newData[transaction.date] = [-[transaction.amount]];
+        } else {
+          const dateDataArray = newData[transaction.date];
+          dateDataArray.push(-transaction.amount)
+          newData[transaction.date] = dateDataArray;
+        }   
       }
     }
     
     return(newData)
   }
-
-
   
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const sumUpAllDailyBalances = (balance, dataCollected)=>{
-    const orderedTransactions = Object.entries(dataCollected).sort()
+    const orderedTransactions = Object.entries(dataCollected).sort(([date1], [date2]) => new Date(date1).getTime() - new Date(date2).getTime());
     
     const formattedData = {};
     
@@ -132,75 +127,25 @@ export default function GraphContainer(props: GraphProps){
 
   }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   const setViewPeriodTemplate = (period, balance)=>{
-
-    const startDate = new Date(period[0]);
-    const endDate = new Date(period[1]);
-    const dateRangeTemplate = {};
-    
-    for(let date= new Date(startDate); date <= endDate; date.setDate(date.getDate() + 1)){
-
-      dateRangeTemplate[date.toISOString().split('T')[0]] = balance
-
-    }
-
-    return dateRangeTemplate
-  }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-  const finalizeDataVisualization = (currentBalance, summedUpBalances, periodTemplate)=>{
-
-    const finalizedData = {}
-
-    let runningBalance = currentBalance;
-    const balanceChanges = summedUpBalances;
-    const balanceChangeDates = Object.keys(balanceChanges)
-    const periodTable = Object.keys(periodTemplate);
-
-    for (let i=0; i<periodTable.length; i++){
-
-      if(!balanceChangeDates.includes(periodTable[i])){
-        finalizedData[periodTable[i]] = runningBalance
-      } else {
-        runningBalance = balanceChanges[periodTable[i]];
-        finalizedData[periodTable[i]] = runningBalance;
-      }
-
-    }
-
-    return(finalizedData)
-
-  }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 //Full process:
-
-  const collectedData = collectDataForGraphTest(income, expenses, viewPeriod);
-  // const collectedData = collectDataForGraph(income, expenses)
+  const recurrences = transactionsWithinPeriod(income, expenses, viewPeriod)
+  const collectedData = collectDataForGraphTest(recurrences);
   const summedUpBalances = sumUpAllDailyBalances(currentBalance, collectedData);
-  const periodTemplate = setViewPeriodTemplate(viewPeriod, currentBalance);
-
-  const graphData = finalizeDataVisualization(currentBalance, summedUpBalances, periodTemplate)
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 
 
 
   const Data={
 
-    labels : Object.keys(graphData), //Object.keys(newData.runningBalance)
+    labels : Object.keys(summedUpBalances), 
 
     datasets: [
       {
         label:"Counts per year",
-        data: Object.values(graphData) //Object.values(newData.runningBalance)
+        data: Object.values(summedUpBalances) 
       }
     ]
   };
