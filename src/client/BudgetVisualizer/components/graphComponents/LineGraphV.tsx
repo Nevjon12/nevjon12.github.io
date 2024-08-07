@@ -42,7 +42,8 @@ export default function LineGraph(props){
         }
       },
       y: {
-        min: 0
+        suggestedMin: -100,
+        suggestedMax: 100
       }
 
     }

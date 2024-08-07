@@ -50,8 +50,6 @@ export default function BudgetVContainer(){
     transactions: transactions
   });
 
-  console.log('State after declaring',vDataState)
-
 
 
   return(

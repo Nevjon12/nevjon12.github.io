@@ -11,7 +11,10 @@ export default function Income(props){
   return(
 
     <div style={{flex:1}} className="budgetComponent">Total income:  <br /><br /> {incomeList.map((inc)=>{
-      return <div>{`Day:${inc.date}
+      const day = new Date(inc.date).toLocaleDateString()
+
+
+      return <div>{`Day:${day}
                     Amnt:${inc.amount}
                     Source:${inc.reason}
                     Frequency:${inc.frequency}
